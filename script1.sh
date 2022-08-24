@@ -28,31 +28,15 @@ sudo apt-get update
 sudo apt-get install sbt
 sudo apt autoremove
 
-}
-
-docker-config(){
-
-sudo usermod -aG docker ${USER}
-sudo usermod -aG docker ${USER}
-su - ${USER} 
-sudo usermod -aG docker ${USER}
-
-sudo groupadd docker
-
-sbt docker:publishLocal
-
-sudo sed -i 's/3.8/3.3/g' ota-ce.yaml
+sudo sed -i '1s/3.8/3.3/g' ota-ce.yaml
 sudo sed -i '1s/^\#//' ota-ce.yaml
 sudo sed -i '1s/^\ //' ota-ce.yaml
-
-sudo chown $USER /var/run/docker.sock
-
-
-
 }
+
+
 install-resources
 ota-lith-config
-docker-config
+
 
 
 
