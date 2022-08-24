@@ -5,7 +5,7 @@ launch-update() {
 	update_id=$(${HOME}/.cargo/bin/ota update create -t ./$file)
 	update_id="${update_id%\"}"
 	update_id="${update_id#\"}"
-	device_id=$(ls ${HOME}/workspace/ota-lith/ota-ce-gen/devices | head -1)
+	device_id=$(ls ./ota-ce-gen/devices | head -1)
 	echo "device ID - $device_id"
 	echo "update ID - $update_id"
 	echo "${HOME}/.cargo/bin/ota update launch --update $update_id --device $device_id"
@@ -13,7 +13,16 @@ launch-update() {
 }
 
 Help() {
-	echo "Help me"
+	#Display Help
+	echo "Create a tome file for the file you want to send as an update"
+	echo
+	echo "SYNTAX: "
+	echo "	createToml [-n|h|l]"
+	echo "OPTIONS:"
+	echo "	-n <name>	The file name"
+	echo "	-h		Print this Help."
+	echo "	-l     		Launch device update"
+	echo
 }
 
 generate-tome() {
@@ -47,23 +56,31 @@ generate-tome() {
 	fi
 }
 
-fileName=null
+#fileName=null
 
 while getopts ":lhn:" option; do
-   case $option in
-      h) # display Help
-         Help
-         exit;;
-      n) # Enter a name
-         fileName=$OPTARG
-         generate-tome;;
-	  l) #launch update
-		 launch-update;;
-     \?) # Invalid option
-         echo "Error: Invalid option"
-         exit;;
-   esac
+	case $option in
+		h) # display Help
+ 			Help
+         	exit;;
+      	n) # Enter a name
+			fileName=$OPTARG
+			echo $fileName
+			generate-tome
+			exit;;
+		:)
+			echo "Error: give a file name as argument"
+			echo
+			Help
+			exit;;
+	  	l) #launch update
+		 	launch-update;;
+		 	#exit;;
+     	\?) # Invalid option
+		     echo "Error: Invalid option"
+		     exit;;
+	esac
 done
 
-
-echo "### END OF SCRIPT ###"
+Help
+#echo "### END OF SCRIPT ###"
