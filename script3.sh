@@ -15,9 +15,11 @@ aktualizrconfig() {
  	cmake -DCMAKE_BUILD_TYPE=Debug ..
 	make package
 	sudo dpkg -i aktualizr.deb
+}
 
+otacli-config(){
 	cd ${HOME}/Desktop/ota-lith/
-	./scripts/get-credentials.sh  #in ota lith
+	./scripts/get-credentials.sh  
 
 	cd ..  
 	yes | git clone https://github.com/simao/ota-cli.git
@@ -30,6 +32,42 @@ aktualizrconfig() {
 
 }
 
-	aktualizrconfig
+Help(){
+	#Display Help
+	echo "Installing resources | Create  ota-cli"
+	echo 
+	echo "SYNTAX: "
+	echo "OPTIONS:"
+	echo "-a	 Install aktualizr"
+	echo "-o	 Create ota-cli"
+	echo "-h	 Prints help"
+	echo "-i	 Install aktualizr & ota-cli"	
+	echo 
+
+}
+
+while getopts ":ihoa:" option; do
+	case $option in
+		h) # display Help
+ 			Help
+         	exit;;
+		i) # Install aktualizr & ota-cli
+			aktualizrconfig
+			otacli-config
+			exit;;
+		a) # Install aktualizr
+			aktualizrconfig
+			exit;;
+		o) # Create ota-cli
+		 	otacli-config
+		 	exit;;
+     		\?) # Invalid option
+		        echo "Error: Invalid option"
+		        exit;;
+	esac
+done
+
+aktualizrconfig
+otacli-config
 
 $SHELL
