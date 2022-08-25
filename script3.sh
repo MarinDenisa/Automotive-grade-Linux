@@ -2,7 +2,7 @@
 
 aktualizrconfig() {
 	
-	sudo apt-get install jq
+	yes | sudo apt-get install jq
 	cd ${HOME}/Desktop/ota-lith/
 	./scripts/gen-device.sh
 	cd .. 
