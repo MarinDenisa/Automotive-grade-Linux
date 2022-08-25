@@ -1,14 +1,14 @@
 #!/bin/bash
 
 launch-update() {
-	echo "${HOME}/.cargo/bin/ota update create -t ./$file"
+	#echo "${HOME}/.cargo/bin/ota update create -t ./$file"
 	update_id=$(${HOME}/.cargo/bin/ota update create -t ./$file)
 	update_id="${update_id%\"}"
 	update_id="${update_id#\"}"
 	device_id=$(ls ./ota-ce-gen/devices | head -1)
-	echo "device ID - $device_id"
-	echo "update ID - $update_id"
-	echo "${HOME}/.cargo/bin/ota update launch --update $update_id --device $device_id"
+	#echo "device ID - $device_id"
+	#echo "update ID - $update_id"
+	#echo "${HOME}/.cargo/bin/ota update launch --update $update_id --device $device_id"
 	${HOME}/.cargo/bin/ota update launch --update $update_id --device $device_id
 }
 
@@ -17,11 +17,12 @@ Help() {
 	echo "Create a tome file for the file you want to send as an update"
 	echo
 	echo "SYNTAX: "
-	echo "	createToml [-n|h|l]"
+	echo "	createToml [-a|n|h|l|]"
 	echo "OPTIONS:"
-	echo "	-n <name>	The file name"
+	echo "	-a <name>	Create a toml and launch update"
+	echo "	-n <name>	Create a toml for a file"
 	echo "	-h		Print this Help."
-	echo "	-l     		Launch device update"
+	echo "	-l <name>    		Launch device update (give .toml file as argument)"
 	echo
 }
 
@@ -31,7 +32,7 @@ generate-tome() {
 		echo "Error: give a file as parameter"
 	else  
 		touch output
-		echo "$HOME/.cargo/bin/ota package add -n $fileName -v 2 -p ./$fileName -b -h ota-ce-device > output"
+		#echo "$HOME/.cargo/bin/ota package add -n $fileName -v 2 -p ./$fileName -b -h ota-ce-device > output"
 		$HOME/.cargo/bin/ota package add -n $fileName -v 2 -p ./$fileName -b -h ota-ce-device > output
 
 		file="$fileName.toml"
@@ -56,31 +57,46 @@ generate-tome() {
 	fi
 }
 
-#fileName=null
+fileName=null
+file=null
 
-while getopts ":lhn:" option; do
+while getopts ":hl:n:a:" option; do
 	case $option in
 		h) # display Help
  			Help
          	exit;;
+         	
+        l) #launch update
+	  		file=$OPTARG
+	  		fileType=$(echo $file | cut -d "." -f 2)
+	  		if [ $fileType == "toml" ]
+	  		then
+	  			launch-update
+	  		else
+	  			echo "Error: file must be .toml"
+	  		fi
+		 	exit;;
+		 	
       	n) # Enter a name
 			fileName=$OPTARG
 			echo $fileName
-			generate-tome
-			exit;;
+			generate-tome;;
+			
 		:)
 			echo "Error: give a file name as argument"
 			echo
 			Help
 			exit;;
-	  	l) #launch update
-		 	launch-update;;
-		 	#exit;;
+	  	
+		a) #create toml and update
+			fileName=$OPTARG
+			echo $fileName
+			generate-tome
+			echo "update launch"
+		 	launch-update
+		 	exit;;
      	\?) # Invalid option
 		     echo "Error: Invalid option"
 		     exit;;
 	esac
 done
-
-Help
-#echo "### END OF SCRIPT ###"
