@@ -83,4 +83,4 @@ while getopts ":lhn:" option; do
 done
 
 Help
-#echo "### END OF SCRIPT ###"
+#echo "### END OF SCRIPT #######"
