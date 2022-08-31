@@ -493,6 +493,7 @@ Window {
 
         }
         CircleButtons{
+            id:menubtn
             anchors{
                 right: parent.right
 
@@ -500,8 +501,61 @@ Window {
                 topMargin: 70
 
             }
+            Rectangle{
+                id:line1
+                color: "black"
+                height:2
+                width: 10
+                anchors{
+                    right: parent.right
+                    top: parent.top
+                    rightMargin: 4
+                    topMargin: 6
+                }
+                rotation: 45
+
+            }
+            Rectangle{
+                id:line2
+                color: aString=="Dark"? "black" : "white"
+                height:2
+                width: 10
+                anchors{
+                    right: parent.right
+                    bottom:  parent.bottom
+                    rightMargin: 4
+                    bottomMargin: 6
+                }
+                rotation: -45
+
+            }
+
             onClicked: {
                 maxMinBtn()
+                if(sidebarCover.width==80){
+                    line2.anchors.left = undefined
+                    line2.anchors.right = menubtn.right
+                    line2.anchors.rightMargin= 4
+                    line2.rotation = -45
+
+                    line1.anchors.left = undefined
+                    line1.anchors.right = menubtn.right
+                    line1.anchors.rightMargin= 4
+                    line1.rotation = 45
+                }
+                else{
+                    line2.anchors.right = undefined
+                    line2.anchors.left = menubtn.left
+                    line2.anchors.leftMargin= 4
+                    line2.rotation = 45
+
+                    line1.anchors.right = undefined
+                    line1.anchors.left = menubtn.left
+                    line1.anchors.leftMargin= 4
+                    line1.rotation = -45
+
+
+                }
             }
         }
     }
