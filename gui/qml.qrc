@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>CircleButtons.qml</file>
+        <file>SideButton.qml</file>
+        <file>TextSideBtn.qml</file>
+        <file>Icon/design.png</file>
+        <file>Icon/ux.png</file>
+        <file>Icon/arrows.png</file>
+        <file>Icon/sun.png</file>
+        <file>Icon/sunny.png</file>
+        <file>Icon/half-moon.png</file>
+        <file>Icon/settings.png</file>
+        <file>Icon/settingsw.png</file>
+        <file>Icon/settingsn.png</file>
+        <file>WindowType.qml</file>
+        <file>ConfigWindow.qml</file>
+        <file>UpdateWindow.qml</file>
+        <file>DeviceWindow.qml</file>
+        <file>HelpWindow.qml</file>
+        <file>HomeWindow.qml</file>
+    </qresource>
+</RCC>
