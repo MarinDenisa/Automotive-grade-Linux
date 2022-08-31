@@ -5,7 +5,7 @@ launch-update() {
 	update_id=$(${HOME}/.cargo/bin/ota update create -t ./$file)
 	update_id="${update_id%\"}"
 	update_id="${update_id#\"}"
-	device_id=$(ls ./ota-ce-gen/devices | head -1)
+	device_id=$(ls ../ota-lith/ota-ce-gen/devices | head -1)
 	#echo "device ID - $device_id"
 	#echo "update ID - $update_id"
 	#echo "${HOME}/.cargo/bin/ota update launch --update $update_id --device $device_id"
@@ -92,7 +92,7 @@ while getopts ":hl:n:a:" option; do
 			fileName=$OPTARG
 			echo $fileName
 			generate-tome
-			echo "update launch"
+			#echo "update launch"
 		 	launch-update
 		 	exit;;
      	\?) # Invalid option
