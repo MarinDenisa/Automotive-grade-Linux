@@ -2,7 +2,14 @@ import QtQuick 2.2
 import QtQuick.Controls 2.5
 import QtQuick.Window 2.5
 
-WindowType{
+Rectangle {
+    anchors{
+        top: bar.bottom
+        left: sidebarCover.right
+        bottom: statusbar.top
+        right: parent.right
+    }
+
         visible: true
         color: aString=="Dark" ? "#1F2022" :    "linen"
         Text{

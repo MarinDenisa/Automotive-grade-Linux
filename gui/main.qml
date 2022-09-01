@@ -9,9 +9,9 @@ Window {
     id:mainw
     visible: true
     width: 960
-    height: 640
+    height: 540
     minimumWidth: 960
-    minimumHeight: 640
+    minimumHeight: 540
     title: qsTr("AGL")
     flags: Qt.Window | Qt.FramelessWindowHint
     property var darkThemeColor1: "black"
@@ -652,11 +652,11 @@ Window {
                 bottom: parent.bottom
                 left: sidebarCover.right
                 right: parent.right
-                leftMargin: 20
+                leftMargin: mainw.width/19.2
                 rightMargin: 20
                 bottomMargin: 20
             }
-            height:100
+            height:mainw.width/19.2
             radius:10
             Rectangle{
                 id:titlebar
