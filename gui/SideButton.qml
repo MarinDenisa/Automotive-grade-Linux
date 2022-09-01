@@ -14,17 +14,7 @@ Button{
 
     background: Rectangle{
         color: parent.hovered ? "lightgray" : "transparent"
-        Rectangle{
-            width: 8
-            anchors{
-                left: parent.left
-                top: parent.top
-                bottom: parent.bottom
-                topMargin: 10
-                bottomMargin: 10
-            }
-            color: aString=="Dark" ? "#132f4d" : "#A49393"
-        }
+
     }
 
 

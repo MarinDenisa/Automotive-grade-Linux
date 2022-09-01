@@ -1,17 +1,17 @@
 import QtQuick 2.2
 import QtQuick.Controls 2.5
 import QtQuick.Window 2.5
+import QtQuick.Dialogs 1.2
+import QtQuick 2.12
+import Qt.labs.qmlmodels 1.0
+import TableModel 0.1
+
 
 WindowType{
     property var light1: "stop"
     property var light2: "stop"
 
-    Text{
-        text: "here is update window"
-        font.pixelSize: 20
-        color: "blue"
-        anchors.centerIn: parent
-    }
+
 
     Text{
         id:titleUpdate
@@ -34,7 +34,7 @@ WindowType{
         anchors{
             top: titleUpdate.bottom
             left: parent.left
-            topMargin: 40
+            topMargin: mainw.width/48
             leftMargin: mainw.width/19.2
         }
 
@@ -111,7 +111,7 @@ WindowType{
         anchors{
             top: titleUpdate.bottom
             left: updateBubble1.right
-            topMargin: 40
+            topMargin: mainw.width/48
             leftMargin: mainw.width/19.2
         }
 
@@ -164,7 +164,7 @@ WindowType{
             id:updateBubbleText2
             font.pixelSize: mainw.width/80
             color: aString=="Dark" ? "white" : "black"
-            text: "First press the button to run\naktualizr in background."
+            text: "Second press the button to run\naktualizr in background."
             anchors{
                 top: updateBubbleButton2.bottom
                 left: parent.left
@@ -183,7 +183,7 @@ WindowType{
             anchors{
                 top: updateBubble1.bottom
                 left: parent.left
-                topMargin: 40
+                topMargin: mainw.width/48
                 leftMargin: mainw.width/19.2
             }
 
@@ -191,7 +191,7 @@ WindowType{
                 id:updateBubbleTitle3
                 font.pixelSize: mainw.width/56.47
                 color: aString=="Dark" ? "white" : "black"
-                text: "Open Aktualizr"
+                text: "Open a file"
                 anchors{
                     top: parent.top
                     left: parent.left
@@ -199,21 +199,7 @@ WindowType{
                     leftMargin: 20
                 }
             }
-            RoundButton{
-                width: 10
-                height: 10
-                radius: 5
-                anchors{
-                    top:parent.top
-                    right: parent.right
-                    topMargin: 10
-                    rightMargin: 10
-                }
-                background: Rectangle{
-                    radius:10
-                    color: light2=="stop"? "red" : "green"
-                }
-            }
+
 
             RoundButton{
                 id:updateBubbleButton3
@@ -229,14 +215,16 @@ WindowType{
                 background: Rectangle{
                     color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
                     radius:mainw.width/192
+
                 }
+                onClicked: fileDialog.open()
             }
 
             Text{
                 id:updateBubbleText3
                 font.pixelSize: mainw.width/80
                 color: aString=="Dark" ? "white" : "black"
-                text: "First press the button to run\naktualizr in background."
+                text: "After a device is connected\nselect a file to update."
                 anchors{
                     top: updateBubbleButton3.bottom
                     left: parent.left
@@ -244,6 +232,15 @@ WindowType{
                     leftMargin: 20
                 }
             }
+
+
+
+            FileDialog{
+                    id:fileDialog
+                    onAccepted:{
+                        textMetrics.text = this.fileUrl
+                    }
+                }
 
 
         }
@@ -257,15 +254,15 @@ WindowType{
             anchors{
                 top: updateBubble2.bottom
                 left: updateBubble3.right
-                topMargin: 40
+                topMargin: mainw.width/48
                 leftMargin: mainw.width/19.2
             }
 
             Text{
-                id:updateBubbleTitle4
-                font.pixelSize: mainw.width/56.47
+                id:updateBubbleTextDevice1
+                font.pixelSize: mainw.width/80
                 color: aString=="Dark" ? "white" : "black"
-                text: "Update a file to your device"
+                text: "Device:"
                 anchors{
                     top: parent.top
                     left: parent.left
@@ -273,21 +270,54 @@ WindowType{
                     leftMargin: 20
                 }
             }
-            RoundButton{
-                width: 10
-                height: 10
-                radius: 5
+            Text{
+                id:updateBubbleTextDevice2
+                font.pixelSize: mainw.width/90
+                color: aString=="Dark" ? "white" : "black"
+                text: "unknown"
                 anchors{
-                    top:parent.top
-                    right: parent.right
-                    topMargin: 10
-                    rightMargin: 10
-                }
-                background: Rectangle{
-                    radius:10
-                    color: light2=="stop"? "red" : "green"
+
+                    left: updateBubbleTextDevice1.right
+                    verticalCenter: updateBubbleTextDevice1.verticalCenter
+                    leftMargin: 2
                 }
             }
+            Text{
+                id:updateBubbleTextFile1
+                font.pixelSize: mainw.width/80
+                color: aString=="Dark" ? "white" : "black"
+                text: "File:"
+                anchors{
+
+                    left: parent.left
+                    top: updateBubbleTextDevice1.bottom
+                    leftMargin: 20
+                    topMargin: mainw.width/96
+                }
+            }
+            TextMetrics
+                {
+                    id: textMetrics
+
+                    font.pixelSize: mainw.width/90
+                    text: "select a file"
+                }
+
+            Text {
+
+                text: textMetrics.text
+                font.pixelSize: textMetrics.font.pixelSize
+                color: aString=="Dark" ? "white" : "black"
+                elide: Text.ElideRight
+                anchors{
+                    right: parent.right
+                    left: updateBubbleTextFile1.right
+                    verticalCenter: updateBubbleTextFile1.verticalCenter
+                    leftMargin: 2
+
+                }
+            }
+
 
             RoundButton{
                 id:updateBubbleButton4
@@ -295,10 +325,10 @@ WindowType{
                 width: mainw.width/10.66
                 height: mainw.height/18
                 anchors{
-                    top: updateBubbleTitle4.bottom
-                    left: parent.left
-                    topMargin: mainw.width/96
-                    leftMargin: 20
+                    top: updateBubbleText4.bottom
+                    horizontalCenter: parent.horizontalCenter
+                    topMargin: mainw.width/320
+
                 }
                 background: Rectangle{
                     color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
@@ -310,18 +340,104 @@ WindowType{
                 id:updateBubbleText4
                 font.pixelSize: mainw.width/80
                 color: aString=="Dark" ? "white" : "black"
-                text: "First press the button to run\naktualizr in background."
+                text: "Update file selected:"
                 anchors{
-                    top: updateBubbleButton4.bottom
-                    left: parent.left
-                    topMargin: mainw.width/96
-                    leftMargin: 20
+                    top: updateBubbleTextFile1.bottom
+
+                    topMargin: mainw.width/48
+                    horizontalCenter: parent.horizontalCenter
                 }
             }
+            Rectangle{
+                color: aString=="Dark" ?  "black" : "white"
+                anchors{
+                    left: parent.left
+                    right: parent.right
+                    top: updateBubbleTextFile1.bottom
+                    topMargin: mainw.width/128
+                }
+                height: mainw.width/192
+            }
+            Rectangle{
+                color: aString=="Dark" ? "darkgray" : " lightgray"
+                anchors{
+
+                    top: updateBubbleTextFile1.bottom
+                    bottom: updateBubbleText4.top
+                    topMargin: mainw.width/128
+                    bottomMargin: mainw.width/128
+                    horizontalCenter: parent.horizontalCenter
+
+
+                }
+                width: mainw.width/240
+            }
+
 
 
         }
 
+        Rectangle{
+            color: aString=="Dark" ? "darkgray" : " lightgray"
+            anchors{
+                left: updateBubble3.right
+                right: updateBubble4.left
+                top: updateBubble3.top
+                topMargin: mainw.width/10.66
+
+            }
+            height: mainw.width/192
+        }
+
+
+        Rectangle{
+            color: aString=="Dark" ? "darkgray" : " lightgray"
+            anchors{
+                left: updateBubble3.right
+                right: updateBubble4.left
+                top: updateBubble3.top
+                topMargin: mainw.width/32
+
+            }
+            height: mainw.width/192
+        }
+
+        Rectangle{
+            id:tablehover
+
+            radius: mainw.width/192
+            color: aString=="Dark" ? "darkgray" : " lightgray"
+            anchors{
+                top: updateBubble3.bottom
+                left: parent.left
+                right: parent.right
+                bottom: parent.bottom
+                topMargin: mainw.width/48
+                leftMargin: mainw.width/19.2
+                bottomMargin: 40
+                rightMargin: 20
+            }
+
+
+
+
+            /*TableView {
+                anchors.fill: parent
+                columnSpacing: 1
+                rowSpacing: 1
+                clip: true
+
+                model: TableModel {}
+
+                delegate: Rectangle {
+                    implicitWidth: 100
+                    implicitHeight: 50
+                    Text {
+                        text: display
+                    }
+                }
+            }*/
+        }
 
 
 

@@ -34,6 +34,34 @@ Window {
     property var aType: "normal"
 
 
+    function fct(){
+            if(configWindow.visible){
+                configled.color=aString=="Dark" ? "lightblue" : "red"
+            }
+            else{
+                configled.color=aString=="Dark" ? "#132f4d" : "#A49393"
+            }
+
+            if(deviceWindow.visible){
+                deviceled.color=aString=="Dark" ? "lightblue" : "red"
+            }
+            else{
+                deviceled.color=aString=="Dark" ? "#132f4d" : "#A49393"
+            }
+            if(updateWindow.visible){
+                updateled.color=aString=="Dark" ? "lightblue" : "red"
+            }
+            else{
+                updateled.color=aString=="Dark" ? "#132f4d" : "#A49393"
+            }
+            if(helpWindow.visible){
+                helpled.color=aString=="Dark" ? "lightblue" : "red"
+            }
+            else{
+                helpled.color=aString=="Dark" ? "#132f4d" : "#A49393"
+            }
+        }
+
     function maxMinBtn(){
         sidebarCover.width = sidebarCover.width==80 ? 300 :80
         configText.visible= sidebarCover.width==80 ? false : true
@@ -302,6 +330,18 @@ Window {
                     top: parent.top
                     topMargin: 90
                 }
+                Rectangle{
+                    id:configled
+                    width: 8
+                    anchors{
+                        left: parent.left
+                        top: parent.top
+                        bottom: parent.bottom
+                        topMargin: 10
+                        bottomMargin: 10
+                    }
+                    color: aString=="Dark" ? "#132f4d" : "#A49393"
+                }
 
                 Rectangle{
                     anchors{
@@ -361,6 +401,7 @@ Window {
                                    deviceWindow.visible = false
                                    updateWindow.visible = false
                                    helpWindow.visible = false
+                        fct()
 
                                }
             }
@@ -377,7 +418,18 @@ Window {
                     topMargin: 2
 
                 }
-
+                Rectangle{
+                    id:deviceled
+                    width: 8
+                    anchors{
+                        left: parent.left
+                        top: parent.top
+                        bottom: parent.bottom
+                        topMargin: 10
+                        bottomMargin: 10
+                    }
+                    color: aString=="Dark" ? "#132f4d" : "#A49393"
+                }
                 Rectangle{
                     width: 46
                     height: 46
@@ -435,6 +487,7 @@ Window {
                                    deviceWindow.visible = true
                                    updateWindow.visible = false
                                    helpWindow.visible = false
+                        fct()
 
                                }
             }
@@ -447,6 +500,18 @@ Window {
                     top: devicebtn.bottom
 
                     topMargin: 2
+                }
+                Rectangle{
+                    id:updateled
+                    width: 8
+                    anchors{
+                        left: parent.left
+                        top: parent.top
+                        bottom: parent.bottom
+                        topMargin: 10
+                        bottomMargin: 10
+                    }
+                    color: aString=="Dark" ? "#132f4d" : "#A49393"
                 }
                 Rectangle{
                     width: 46
@@ -504,6 +569,7 @@ Window {
                                    deviceWindow.visible = false
                                    updateWindow.visible = true
                                    helpWindow.visible = false
+                        fct()
 
                                }
             }
@@ -516,6 +582,18 @@ Window {
                     bottom: parent.bottom
 
                     bottomMargin: 10
+                }
+                Rectangle{
+                    id:helpled
+                    width: 8
+                    anchors{
+                        left: parent.left
+                        top: parent.top
+                        bottom: parent.bottom
+                        topMargin: 10
+                        bottomMargin: 10
+                    }
+                    color: aString=="Dark" ? "#132f4d" : "#A49393"
                 }
                 Rectangle{
                     anchors{
@@ -565,6 +643,7 @@ Window {
                                    deviceWindow.visible = false
                                    updateWindow.visible = false
                                    helpWindow.visible = true
+                        fct()
 
                                }
             }
