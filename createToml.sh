@@ -79,7 +79,7 @@ while getopts ":hl:n:a:" option; do
 		 	
       	n) # Enter a name
 			fileName=$OPTARG
-			echo $fileName
+			#echo $fileName
 			generate-tome;;
 			
 		:)
