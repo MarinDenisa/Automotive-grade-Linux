@@ -3,12 +3,15 @@ import QtQuick.Controls 2.5
 import QtQuick.Window 2.5
 import QtQml.Models 2.5
 import QtQuick.Layouts 1.0
+import QtGraphicalEffects 1.0
 
 Window {
     id:mainw
     visible: true
-    width: 1020
-    height: 720
+    width: 960
+    height: 640
+    minimumWidth: 960
+    minimumHeight: 640
     title: qsTr("AGL")
     flags: Qt.Window | Qt.FramelessWindowHint
     property var darkThemeColor1: "black"
@@ -59,13 +62,6 @@ Window {
         UpdateWindow{
             id:updateWindow
         }
-
-
-
-
-
-
-
 
         Rectangle{
             id:bar
@@ -336,6 +332,29 @@ Window {
 
                     }
                 }
+                Item{
+                    width: 35
+                    height:35
+                    anchors{
+                        left: parent.left
+                       // top: parent.top
+                        //topMargin: 20
+                        leftMargin: 15
+                        verticalCenter: parent.verticalCenter
+                    }
+
+                    Image {
+                    id: configicon
+                    anchors.fill: parent
+                    source: "Icon/tool.png"
+                  //  color: "white"
+                    }
+                    ColorOverlay{
+                    anchors.fill: configicon
+                    source: configicon
+                    color: aString == "Dark" ? "white" : "black"
+                    }
+                }
                     onClicked:{
                                    homeWindow.visible = false
                                    configWindow.visible = true
@@ -356,7 +375,9 @@ Window {
                     top: configbtn.bottom
 
                     topMargin: 2
+
                 }
+
                 Rectangle{
                     width: 46
                     height: 46
@@ -367,10 +388,28 @@ Window {
                         bottom: parent.bottom
 
                     }
+                    Item{
+                        width: 35
+                        height:35
+                        anchors{
+                            left: parent.left
+                           // top: parent.top
+                            //topMargin: 20
+                            leftMargin: 15
+                            verticalCenter: parent.verticalCenter
+                        }
+
                     Image {
                         id: deviceicon
                         anchors.fill: parent
-                        //source: "Icon/ux.png"
+                        source: "Icon/monitor.png"
+                      //  color: "white"
+                    }
+                    ColorOverlay{
+                        anchors.fill: deviceicon
+                        source: deviceicon
+                        color: aString == "Dark" ? "white" : "black"
+                    }
                     }
                 }
                 Rectangle{
@@ -419,10 +458,26 @@ Window {
                         bottom: parent.bottom
 
                     }
+                    Item{
+                        width: 35
+                        height:35
+                        anchors{
+                            left: parent.left
+                            leftMargin: 15
+                            verticalCenter: parent.verticalCenter
+                        }
+
                     Image {
                         id: updateicon
                         anchors.fill: parent
-                        //source: "Icon/ux.png"
+                        source: "Icon/refresh-cw.png"
+                      //  color: "white"
+                    }
+                    ColorOverlay{
+                        anchors.fill: updateicon
+                        source: updateicon
+                        color: aString == "Dark" ? "white" : "black"
+                    }
                     }
                 }
 
@@ -471,11 +526,36 @@ Window {
                         leftMargin: 70
 
                     }
+
+
                     color: "transparent"
                     TextSideBtn{
                         id:helpText
                         text: "Help"
                         anchors.centerIn: parent
+                    }
+                }
+                Item{
+                    width: 35
+                    height:35
+                    anchors{
+                        left: parent.left
+                       // top: parent.top
+                        //topMargin: 20
+                        leftMargin: 15
+                        verticalCenter: parent.verticalCenter
+                    }
+
+                    Image {
+                    id: helpicon
+                    anchors.fill: parent
+                    source: "Icon/help-circle.png"
+                  //  color: "white"
+                    }
+                    ColorOverlay{
+                    anchors.fill: helpicon
+                    source: helpicon
+                    color: aString == "Dark" ? "white" : "black"
                     }
                 }
 

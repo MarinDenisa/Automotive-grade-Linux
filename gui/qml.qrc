@@ -19,5 +19,10 @@
         <file>DeviceWindow.qml</file>
         <file>HelpWindow.qml</file>
         <file>HomeWindow.qml</file>
+        <file>Icon/help-circle.png</file>
+        <file>Icon/info.png</file>
+        <file>Icon/monitor.png</file>
+        <file>Icon/refresh-cw.png</file>
+        <file>Icon/tool.png</file>
     </qresource>
 </RCC>
