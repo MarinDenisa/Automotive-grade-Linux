@@ -2,11 +2,17 @@ import QtQuick 2.2
 import QtQuick.Controls 2.5
 import QtQuick.Window 2.5
 
-Item{
     Rectangle {
+        anchors{
+            top: bar.bottom
+            left: sidebarCover.right
+            bottom: statusbar.top
+            right: parent.right
+        }
+        visible: false
         color: aString=="Dark" ? "#1F2022" :    "linen"
         //radius: 100
-        anchors.fill:parent
+
         RoundButton{
             radius: 3
             width: 60
@@ -30,7 +36,14 @@ Item{
                 bottomMargin: 10
             }
 
-            onClicked: stack.push("HomeWindow.qml")
+            onClicked:{
+                           homeWindow.visible = true
+                           configWindow.visible = false
+                           deviceWindow.visible = false
+                           updateWindow.visible = false
+                           helpWindow.visible = false
+
+                       }
         }
     }
-}
+

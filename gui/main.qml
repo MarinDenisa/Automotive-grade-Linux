@@ -44,37 +44,23 @@ Window {
         anchors.fill: parent
         color: aString=="Dark" ? "#1F2022" : "linen"
 
-        Rectangle{
-            id: stackviewcover
-            anchors{
-                top: bar.bottom
-                left: sidebarCover.right
-                bottom: statusbar.top
-                right: parent.right
-                leftMargin: 20
-            }
-            StackView{
-                id:stack
-                initialItem: "HomeWindow.qml"
-                anchors.fill:parent
-                pushEnter: Transition {
-                        PropertyAnimation {
-                            property: "opacity"
-                            from: 1
-                            to:1
-                            duration: 1
-                        }
-                    }
-                    pushExit: Transition {
-                        PropertyAnimation {
-                            property: "opacity"
-                            from: 1
-                            to:1
-                            duration: 1
-                        }
-                    }
-            }
+        ConfigWindow{
+            id:configWindow
         }
+        DeviceWindow{
+            id:deviceWindow
+        }
+        HelpWindow{
+            id:helpWindow
+        }
+        HomeWindow{
+            id:homeWindow
+        }
+        UpdateWindow{
+            id:updateWindow
+        }
+
+
 
 
 
@@ -350,11 +336,14 @@ Window {
 
                     }
                 }
-                onClicked:{
-                    //stack.clear()
-                    stack.push("ConfigWindow.qml")
-                }
+                    onClicked:{
+                                   homeWindow.visible = false
+                                   configWindow.visible = true
+                                   deviceWindow.visible = false
+                                   updateWindow.visible = false
+                                   helpWindow.visible = false
 
+                               }
             }
 
             SideButton
@@ -401,11 +390,14 @@ Window {
                     }
                 }
 
-                onPressed: {
-                   // stack.clear()
-                   stack.push("DeviceWindow.qml")
+                    onClicked:{
+                                   homeWindow.visible = false
+                                   configWindow.visible = false
+                                   deviceWindow.visible = true
+                                   updateWindow.visible = false
+                                   helpWindow.visible = false
 
-                }
+                               }
             }
             SideButton
             {
@@ -451,11 +443,14 @@ Window {
                     }
                 }
 
-                onPressed: {
-                    //stack.clear()
-                    stack.push("UpdateWindow.qml")
+                    onClicked:{
+                                   homeWindow.visible = false
+                                   configWindow.visible = false
+                                   deviceWindow.visible = false
+                                   updateWindow.visible = true
+                                   helpWindow.visible = false
 
-                }
+                               }
             }
 
             SideButton{
@@ -484,11 +479,14 @@ Window {
                     }
                 }
 
-                onPressed: {
-                 //  stack.clear()
-                   stack.push("HelpWindow.qml")
+                    onClicked:{
+                                   homeWindow.visible = false
+                                   configWindow.visible = false
+                                   deviceWindow.visible = false
+                                   updateWindow.visible = false
+                                   helpWindow.visible = true
 
-                }
+                               }
             }
 
         }

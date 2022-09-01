@@ -10,4 +10,17 @@ WindowType{
         color: "blue"
         anchors.centerIn: parent
     }
+    RoundButton{
+        id:butonas
+        width: 40
+        height:40
+        background: Rectangle{
+            color: parent.down? "gray" : "red"
+        }
+        onClicked: {
+            butonas.down = true
+        }
+    }
+
+
 }
