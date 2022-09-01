@@ -172,9 +172,158 @@ WindowType{
                 leftMargin: 20
             }
         }
-
-
     }
+
+        Rectangle{
+            id:updateBubble3
+            width: mainw.width/4.8
+            height: mainw.height/4.5
+            radius: mainw.width/192
+            color: aString=="Dark" ? "darkgray" : " lightgray"
+            anchors{
+                top: updateBubble1.bottom
+                left: parent.left
+                topMargin: 40
+                leftMargin: mainw.width/19.2
+            }
+
+            Text{
+                id:updateBubbleTitle3
+                font.pixelSize: mainw.width/56.47
+                color: aString=="Dark" ? "white" : "black"
+                text: "Open Aktualizr"
+                anchors{
+                    top: parent.top
+                    left: parent.left
+                    topMargin: 10
+                    leftMargin: 20
+                }
+            }
+            RoundButton{
+                width: 10
+                height: 10
+                radius: 5
+                anchors{
+                    top:parent.top
+                    right: parent.right
+                    topMargin: 10
+                    rightMargin: 10
+                }
+                background: Rectangle{
+                    radius:10
+                    color: light2=="stop"? "red" : "green"
+                }
+            }
+
+            RoundButton{
+                id:updateBubbleButton3
+                radius: mainw.width/192
+                width: mainw.width/10.66
+                height: mainw.height/18
+                anchors{
+                    top: updateBubbleTitle3.bottom
+                    left: parent.left
+                    topMargin: mainw.width/96
+                    leftMargin: 20
+                }
+                background: Rectangle{
+                    color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
+                    radius:mainw.width/192
+                }
+            }
+
+            Text{
+                id:updateBubbleText3
+                font.pixelSize: mainw.width/80
+                color: aString=="Dark" ? "white" : "black"
+                text: "First press the button to run\naktualizr in background."
+                anchors{
+                    top: updateBubbleButton3.bottom
+                    left: parent.left
+                    topMargin: mainw.width/96
+                    leftMargin: 20
+                }
+            }
+
+
+        }
+
+        Rectangle{
+            id:updateBubble4
+            width: mainw.width/4.8
+            height: mainw.height/4.5
+            radius: mainw.width/192
+            color: aString=="Dark" ? "darkgray" : " lightgray"
+            anchors{
+                top: updateBubble2.bottom
+                left: updateBubble3.right
+                topMargin: 40
+                leftMargin: mainw.width/19.2
+            }
+
+            Text{
+                id:updateBubbleTitle4
+                font.pixelSize: mainw.width/56.47
+                color: aString=="Dark" ? "white" : "black"
+                text: "Update a file to your device"
+                anchors{
+                    top: parent.top
+                    left: parent.left
+                    topMargin: 10
+                    leftMargin: 20
+                }
+            }
+            RoundButton{
+                width: 10
+                height: 10
+                radius: 5
+                anchors{
+                    top:parent.top
+                    right: parent.right
+                    topMargin: 10
+                    rightMargin: 10
+                }
+                background: Rectangle{
+                    radius:10
+                    color: light2=="stop"? "red" : "green"
+                }
+            }
+
+            RoundButton{
+                id:updateBubbleButton4
+                radius: mainw.width/192
+                width: mainw.width/10.66
+                height: mainw.height/18
+                anchors{
+                    top: updateBubbleTitle4.bottom
+                    left: parent.left
+                    topMargin: mainw.width/96
+                    leftMargin: 20
+                }
+                background: Rectangle{
+                    color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
+                    radius:mainw.width/192
+                }
+            }
+
+            Text{
+                id:updateBubbleText4
+                font.pixelSize: mainw.width/80
+                color: aString=="Dark" ? "white" : "black"
+                text: "First press the button to run\naktualizr in background."
+                anchors{
+                    top: updateBubbleButton4.bottom
+                    left: parent.left
+                    topMargin: mainw.width/96
+                    leftMargin: 20
+                }
+            }
+
+
+        }
+
+
+
 
 
 
