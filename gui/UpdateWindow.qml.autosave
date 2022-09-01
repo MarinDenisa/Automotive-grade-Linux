@@ -24,9 +24,9 @@ WindowType{
     }
     Rectangle{
         id:updateBubble1
-        width: 400
-        height: 240
-        radius: 5
+        width: aType=="normal" ? 200:400
+        height: aType=="normal" ? 120:240
+        radius: aType=="normal" ? 5: 10
         color: aString=="Dark" ? "darkgray" : " lightgray"
         anchors{
             top: titleUpdate.bottom
@@ -37,7 +37,7 @@ WindowType{
 
         Text{
             id:updateBubbleTitle1
-            font.pixelSize: 30
+            font.pixelSize: aType=="normal" ? 20 : 30
             color: aString=="Dark" ? "white" : "black"
             text: "Open Docker"
             anchors{
@@ -51,8 +51,8 @@ WindowType{
         RoundButton{
             id:updateBubbleButton1
             radius: 5
-            width: 180
-            height: 60
+            width: aType=="normal" ? 90:180
+            height: aType=="normal" ? 30 :60
             anchors{
                 top: updateBubbleTitle1.bottom
                 left: parent.left
