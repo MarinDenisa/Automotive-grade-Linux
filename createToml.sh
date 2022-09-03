@@ -5,7 +5,7 @@ launch-update() {
 	update_id=$(${HOME}/.cargo/bin/ota update create -t ./$file)
 	update_id="${update_id%\"}"
 	update_id="${update_id#\"}"
-	device_id=$(ls ../ota-lith/ota-ce-gen/devices | head -1)
+	device_id=$(ls -d ../ota-lith/ota-ce-gen/devices/*/ |cut -f5 -d'/')
 	#echo "device ID - $device_id"
 	#echo "update ID - $update_id"
 	#echo "${HOME}/.cargo/bin/ota update launch --update $update_id --device $device_id"
