@@ -4,7 +4,7 @@ import QtQuick.Window 2.5
 import QtQuick.Dialogs 1.2
 import QtQuick 2.12
 import Qt.labs.qmlmodels 1.0
-import TableModel 0.1
+//import TableModel 0.1
 
 
 WindowType{
