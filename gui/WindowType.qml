@@ -42,7 +42,7 @@ import QtQuick.Window 2.5
                            deviceWindow.visible = false
                            updateWindow.visible = false
                            helpWindow.visible = false
-
+                           fct()
                        }
         }
     }

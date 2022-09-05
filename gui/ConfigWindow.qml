@@ -1,6 +1,7 @@
 import QtQuick 2.2
 import QtQuick.Controls 2.5
 import QtQuick.Window 2.5
+import Process 1.0
 
 WindowType{
 
@@ -10,6 +11,9 @@ WindowType{
     property var light2: "stop"
     property var light3: "stop"
     property var light4: "stop"
+
+
+
 
     Text{
         id:titleConfig
@@ -80,6 +84,11 @@ WindowType{
                 color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
                 radius:mainw.width/192
             }
+            onClicked: {
+                str="doi"
+                process1.start("/home/dragos/Desktop/GitHub/ota-gui/install_ota-lith.sh",["-i"])
+            }
+
         }
 
         Text{
@@ -94,8 +103,6 @@ WindowType{
                 leftMargin: 20
             }
         }
-
-
     }
 
 
@@ -155,6 +162,11 @@ WindowType{
             background: Rectangle{
                 color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
                 radius:mainw.width/192
+            }
+
+            onClicked: {
+                str="doi"
+                process1.start("/home/dragos/Desktop/GitHub/ota-gui/install_ota-lith.sh",["-o"])
             }
         }
 
@@ -227,8 +239,12 @@ WindowType{
                 background: Rectangle{
                     color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
                     radius:mainw.width/192
-
-}}
+                }
+                onClicked: {
+                    str="doi"
+                    process1.start("/home/dragos/Desktop/GitHub/ota-gui/install_akt_ota-cli.sh",["-a"])
+                }
+            }
 
             Text{
                 id:configBubbleText3
@@ -303,8 +319,12 @@ WindowType{
                     background: Rectangle{
                         color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
                         radius:mainw.width/192
-
-}}
+                    }
+                    onClicked: {
+                        str="doi"
+                        process1.start("/home/dragos/Desktop/GitHub/ota-gui/install_akt_ota-cli.sh",["-o"])
+                    }
+                }
 
                 Text{
                     id:configBubbleText4

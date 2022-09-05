@@ -4,6 +4,8 @@ import QtQuick.Window 2.5
 import QtQml.Models 2.5
 import QtQuick.Layouts 1.0
 import QtGraphicalEffects 1.0
+import Process 1.0
+
 
 Window {
     id:mainw
@@ -32,6 +34,7 @@ Window {
 
     property var aString:"Dark"
     property var aType: "normal"
+    property var str: "unu"
 
 
     function fct(){
@@ -68,6 +71,26 @@ Window {
         deviceText.visible= sidebarCover.width==80 ? false : true
         updateText.visible= sidebarCover.width==80 ? false : true
         helpText.visible= sidebarCover.width==80 ? false : true
+    }
+
+    Process {
+        id: process1
+
+        property string output: ""
+
+
+        onStarted: print("Started")
+        onFinished:{
+
+            print("Closed")
+        }
+
+        onErrorOccurred: console.log("Error Ocuured: ", error)
+
+        onReadyReadStandardOutput: {
+            output = process1.readAll()
+            txt.text += output
+        }
     }
 
     Rectangle{
@@ -749,14 +772,100 @@ Window {
             }
 
             Label{
-
+                id:label
                 anchors{
                 bottom: parent.bottom
                 left: parent.left
                 right: parent.right
                 top: titlebar.bottom
                 }
+                ScrollView {
+                    id: scrollView
+
+                    clip: true
+                    anchors{
+                        left: parent.left
+                        right: stopprocess.left
+                        top: parent.top
+                        bottom: parent.bottom
+                    }
+
+                    ScrollBar {
+                            id: vbar
+                            hoverEnabled: true
+                            active: hovered || pressed
+                            orientation: Qt.Vertical
+                            size: label.height / 4
+                            anchors.top: parent.top
+                            anchors.right: parent.right
+                            anchors.bottom: parent.bottom
+                        }
+
+                    TextArea {
+                        id: txt
+
+
+                        readOnly:           true
+                        textFormat:         TextEdit.RichText
+
+                        text:  "here"
+                        width: parent.width
+                        height: parent.height
+
+                        anchors.fill: parent
+                        function append()
+                        {
+
+                            txt.cursorPosition = txt.length-25
+                        }
+                    }
+
+                    Timer {
+                         running: true
+                         interval: 50
+                         repeat: true
+                         property int iteration: 0
+
+                         onTriggered:{
+                             if(str=="doi"){
+                                 txt.append()
+                                 txt.append()
+                             }
+                          }
+                     }
+
+
+
                 //top: titlebar.bottom
+                }
+                RoundButton{
+                    id:stopprocess
+                    radius: 3
+                    width: 60
+                    height:20
+                    background: Rectangle{
+                        border.width: 2
+                        border.color: "lightgray"
+                        radius: 3
+                        color: parent.hovered ? "gray" : (aString=="Dark" ? "white" : "black")
+                    }
+                    Text{
+                        text:"Stop"
+                        font.pixelSize: 16
+                        color: aString=="Dark" ? "black" : "white"
+                        anchors.centerIn: parent
+                    }
+                    anchors{
+                        right: parent.right
+                        bottom: parent.bottom
+                        rightMargin: 20
+                        bottomMargin: 10
+                    }
+                    onClicked:{
+                        process1.kill()
+                        txt.text += "\nProcess stopped."
+                    }
+                }
             }
         }
 

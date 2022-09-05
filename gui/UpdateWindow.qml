@@ -334,6 +334,7 @@ WindowType{
                     color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
                     radius:mainw.width/192
                 }
+                onClicked: scriptLauncher.launchScript()
             }
 
             Text{
