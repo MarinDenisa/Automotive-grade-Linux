@@ -8,8 +8,8 @@ import Qt.labs.qmlmodels 1.0
 
 
 WindowType{
-    property var light1: "stop"
-    property var light2: "stop"
+    property var lightup1: "stop"
+    property var lightup2: "stop"
 
 
 
@@ -63,7 +63,7 @@ WindowType{
             }
             background: Rectangle{
                 radius:10
-                color: light1=="stop"? "red" : "green"
+                color: lightup1=="stop"? "red" : "green"
             }
         }
 
@@ -139,7 +139,7 @@ WindowType{
             }
             background: Rectangle{
                 radius:10
-                color: light2=="stop"? "red" : "green"
+                color: lightup2=="stop"? "red" : "green"
             }
         }
 

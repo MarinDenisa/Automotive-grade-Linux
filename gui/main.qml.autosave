@@ -169,6 +169,9 @@ Window {
             txt.text += output
         }
     }
+    
+    
+    
 
     Rectangle{
         id:content

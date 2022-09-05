@@ -22,6 +22,7 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
 
     qmlRegisterType<Process>( "Process", 1, 0, "Process" );
+
     engine.load(url);
 
     return app.exec();
