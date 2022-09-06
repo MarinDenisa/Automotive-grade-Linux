@@ -3,7 +3,7 @@
 aktualizrconfig() {
 	
 	yes | sudo apt-get install jq
-	cd ${HOME}/Desktop/ota-lith/
+	cd ${HOME}/Desktop/otagui/ota-lith/
 	./scripts/gen-device.sh
 	cd .. 
 
@@ -18,7 +18,7 @@ aktualizrconfig() {
 }
 
 otacli-config(){
-	cd ${HOME}/Desktop/ota-lith/
+	cd ${HOME}/Desktop/otagui/ota-lith/
 	./scripts/get-credentials.sh  
 
 	cd ..  
