@@ -5,6 +5,10 @@ import QtQuick.Dialogs 1.2
 import QtQuick 2.12
 import Qt.labs.qmlmodels 1.0
 //import TableModel 0.1
+import QtQuick 2.12
+import Qt.labs.qmlmodels 1.0
+ import Qt.labs.platform 1.1
+import QtQuick.Controls 1.4
 
 
 WindowType{
@@ -417,6 +421,79 @@ WindowType{
                 leftMargin: mainw.width/19.2
                 bottomMargin: 40
                 rightMargin: 20
+            }
+            TableView {
+                id: tableView
+                model: dataModel
+                anchors.fill: parent
+
+
+                TableViewColumn {
+                    width: parent.width/5
+
+                    title: "File"
+                    role: "name"
+
+                }
+                TableViewColumn {
+                    width: parent.width/5
+                    title: "Date"
+                    role: "text"
+                }
+
+                TableViewColumn {
+                    width: parent.width/5
+                    title: ""
+                }
+                TableViewColumn {
+
+                            id:checkcolumn1
+
+                            role: "check"
+                            title: "Update"
+                            delegate: Item {
+
+                                anchors.fill: parent
+                                CheckBox {
+                                    id:checkbox
+                                    //anchors.fill:parent
+
+                                    anchors.centerIn: parent
+                                    checked: false
+                                }
+                            }
+                }
+
+                itemDelegate: Item {
+                    Text {
+                        anchors.centerIn: parent
+                       //renderType: Text.NativeRendering
+                        text: styleData.value
+                    }
+
+                }
+            }
+
+            ListModel
+            {
+                        id: dataModel
+                        ListElement {
+                            name: "filename1"
+                            text: "01.01.2022"
+                        }
+                        ListElement {
+                            name: "filename2"
+                            text: "25.02.2022"
+                        }
+                        ListElement {
+                            name: "tst.txt"
+                            text: "12.06.2022"
+                        }
+                        ListElement {
+                            name: "file"
+                            text: "22.10.2022"
+                        }
+
             }
 
 
