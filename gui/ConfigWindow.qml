@@ -20,7 +20,7 @@ WindowType{
     Rectangle{
         id:configBubble1
         width: mainw.width/4.8
-        height: mainw.height/4.5
+        height: mainw.height/5.9
         radius: mainw.width/192
         color: aString=="Dark" ? "darkgray" : " lightgray"
         anchors{
@@ -32,13 +32,13 @@ WindowType{
 
         Text{
             id:configBubbleTitle1
-            font.pixelSize: mainw.width/56.47
+            font.pixelSize: mainw.width/83
             color: aString=="Dark" ? "white" : "black"
             text: "Install resources"
             anchors{
                 top: parent.top
                 left: parent.left
-                topMargin: 10
+                topMargin: 7
                 leftMargin: 20
             }
         }
@@ -62,12 +62,12 @@ WindowType{
         RoundButton{
             id:configBubbleButton1
             radius: mainw.width/192
-            width: mainw.width/10.66
-            height: mainw.height/18
+            width: mainw.width/13
+            height: mainw.height/24
             anchors{
                 top: configBubbleTitle1.bottom
                 left: parent.left
-                topMargin: mainw.width/96
+                topMargin: mainw.width/125
                 leftMargin: 20
             }
             background: Rectangle{
@@ -83,13 +83,13 @@ WindowType{
 
         Text{
             id:configBubbleText1
-            font.pixelSize: mainw.width/80
+            font.pixelSize: mainw.width/83
             color: aString=="Dark" ? "white" : "black"
             text: "First press the button to \ninstall the resources."
             anchors{
                 top: configBubbleButton1.bottom
                 left: parent.left
-                topMargin: mainw.width/96
+                topMargin: mainw.width/180
                 leftMargin: 20
             }
         }
@@ -100,7 +100,7 @@ WindowType{
     Rectangle{
         id:configBubble2
         width: mainw.width/4.8
-        height: mainw.height/4.5
+        height: mainw.height/5.9
         radius: mainw.width/192
         color: aString=="Dark" ? "darkgray" : " lightgray"
         anchors{
@@ -112,13 +112,13 @@ WindowType{
 
         Text{
             id:configBubbleTitle2
-            font.pixelSize: mainw.width/56.47
+            font.pixelSize: mainw.width/83
             color: aString=="Dark" ? "white" : "black"
             text: "Install ota-lith"
             anchors{
                 top: parent.top
                 left: parent.left
-                topMargin: 10
+                topMargin: 7
                 leftMargin: 20
             }
         }
@@ -141,12 +141,12 @@ WindowType{
         RoundButton{
             id:configBubbleButton2
             radius: mainw.width/192
-            width: mainw.width/10.66
-            height: mainw.height/18
+            width: mainw.width/13
+            height: mainw.height/24
             anchors{
                 top: configBubbleTitle2.bottom
                 left: parent.left
-                topMargin: mainw.width/96
+                topMargin: mainw.width/125
                 leftMargin: 20
             }
             background: Rectangle{
@@ -162,13 +162,13 @@ WindowType{
 
         Text{
             id:configBubbleText2
-            font.pixelSize: mainw.width/80
+            font.pixelSize: mainw.width/83
             color: aString=="Dark" ? "white" : "black"
             text: "Second press the button to \ninstall ota-lith in background."
             anchors{
                 top: configBubbleButton2.bottom
                 left: parent.left
-                topMargin: mainw.width/96
+                topMargin: mainw.width/180
                 leftMargin: 20
             }
         }
@@ -177,25 +177,25 @@ WindowType{
         Rectangle{
             id:configBubble3
             width: mainw.width/4.8
-            height: mainw.height/4.5
+            height: mainw.height/5.9
             radius: mainw.width/192
             color: aString=="Dark" ? "darkgray" : " lightgray"
             anchors{
                 top: configBubble1.bottom
                 left: parent.left
-                topMargin: mainw.width/48
+                topMargin: mainw.width/12
                 leftMargin: mainw.width/19.2
             }
 
             Text{
                 id:configBubbleTitle3
-                font.pixelSize: mainw.width/56.47
+                font.pixelSize: mainw.width/83
                 color: aString=="Dark" ? "white" : "black"
                 text: "Install aktualizr"
                 anchors{
                     top: parent.top
                     left: parent.left
-                    topMargin: 10
+                    topMargin: 7
                     leftMargin: 20
                 }
             }
@@ -218,12 +218,12 @@ WindowType{
             RoundButton{
                 id:configBubbleButton3
                 radius: mainw.width/192
-                width: mainw.width/10.66
-                height: mainw.height/18
+                width: mainw.width/13
+                height: mainw.height/24
                 anchors{
                     top: configBubbleTitle3.bottom
                     left: parent.left
-                    topMargin: mainw.width/96
+                    topMargin: mainw.width/125
                     leftMargin: 20
                 }
                 background: Rectangle{
@@ -242,13 +242,13 @@ WindowType{
 
             Text{
                 id:configBubbleText3
-                font.pixelSize: mainw.width/80
+                font.pixelSize: mainw.width/83
                 color: aString=="Dark" ? "white" : "black"
                 text: "Third press the button to \ninstall aktualizr in background."
                 anchors{
                     top: configBubbleButton3.bottom
                     left: parent.left
-                    topMargin: mainw.width/96
+                    topMargin: mainw.width/180
                     leftMargin: 20
                 }
             }}
@@ -261,25 +261,25 @@ WindowType{
             Rectangle{
                 id:configBubble4
                 width: mainw.width/4.8
-                height: mainw.height/4.5
+                height: mainw.height/5.9
                 radius: mainw.width/192
                 color: aString=="Dark" ? "darkgray" : " lightgray"
                 anchors{
                     top: configBubble2.bottom
                     left: configBubble3.right
-                    topMargin: mainw.width/48
+                    topMargin: mainw.width/12
                     leftMargin: mainw.width/19.2
                 }
 
                 Text{
                     id:configBubbleTitle4
-                    font.pixelSize: mainw.width/56.47
+                    font.pixelSize: mainw.width/83
                     color: aString=="Dark" ? "white" : "black"
                     text: "Install ota-cli"
                     anchors{
                         top: parent.top
                         left: parent.left
-                        topMargin: 10
+                        topMargin: 7
                         leftMargin: 20
                     }
                 }
@@ -302,12 +302,12 @@ WindowType{
                 RoundButton{
                     id:configBubbleButton4
                     radius: mainw.width/192
-                    width: mainw.width/10.66
-                    height: mainw.height/18
+                    width: mainw.width/13
+                    height: mainw.height/24
                     anchors{
                         top: configBubbleTitle4.bottom
                         left: parent.left
-                        topMargin: mainw.width/96
+                        topMargin: mainw.width/125
                         leftMargin: 20
                     }
                     background: Rectangle{
@@ -322,13 +322,13 @@ WindowType{
 
                 Text{
                     id:configBubbleText4
-                    font.pixelSize: mainw.width/80
+                    font.pixelSize: mainw.width/83
                     color: aString=="Dark" ? "white" : "black"
                     text: "Fourth press the button to \ninstall ota-cli in background"
                     anchors{
                         top: configBubbleButton4.bottom
                         left: parent.left
-                        topMargin: mainw.width/96
+                        topMargin: mainw.width/180
                         leftMargin: 20
                     }
                 }
@@ -340,8 +340,83 @@ WindowType{
 
 
 
+            Rectangle{
+                id:infoDocker
+
+                radius: mainw.width/192
+                color: aString=="Dark" ? "darkgray" : " lightgray"
+                anchors{
+                    top: configBubble1.bottom
+                    left: parent.left
+                    right: parent.right
+                    bottom: configBubble3.top
+                    topMargin: mainw.width/48
+                    leftMargin: mainw.width/19.2
+                    bottomMargin: mainw.width/48
+                    rightMargin: 20
+                }
+                Text{
+                    id:dockerText
+                    font.pixelSize: mainw.width/80
+                    color: aString=="Dark" ? "white" : "black"
+                    text: "Install Docker"
+                    anchors{
+                        top: parent.top
+                        left: parent.left
+                        topMargin: mainw.width/96
+                        leftMargin: mainw.width/48
+                    }
 
 
+                }
+
+                RoundButton{
+                    id:configBubbleDocker
+                    radius: mainw.width/192
+                    width: mainw.width/16
+                    height: mainw.height/28
+                    anchors{
+                        top:parent.top
+                        left: parent.left
+                        topMargin: mainw.width/96
+                        leftMargin: mainw.width/6.85
+                    }
+                    background: Rectangle{
+                        color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
+                        radius:mainw.width/192
+                    }
+
+
+                Text{
+                id:dockerText1
+                font.pixelSize: mainw.width/80
+                color: aString=="Dark" ? "white" : "black"
+                text: "Open Docker"
+                anchors{
+                    top: parent.top
+                    left: parent.left
+                    topMargin: mainw.width/480
+                    leftMargin: mainw.width/7.38
+                }
+                }
+}
+                RoundButton{
+                    id:configBubbleDocker1
+                    radius: mainw.width/192
+                    width: mainw.width/16
+                    height: mainw.height/28
+                    anchors{
+                        top: parent.top
+                        left: parent.left
+                        topMargin: mainw.width/96
+                        leftMargin: mainw.width/2.474
+                    }
+                    background: Rectangle{
+                        color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
+                        radius:mainw.width/192
+                    }
+        }
+}
 
 
 
