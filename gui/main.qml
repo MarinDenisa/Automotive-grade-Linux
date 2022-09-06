@@ -51,6 +51,13 @@ Window {
         return (str.slice(str.lastIndexOf("/")+1))
     }
 
+    function rmExt(str)
+    {
+        return (str.slice(0,str.lastIndexOf(".")))
+    }
+
+
+
     function fct(){
             if(configWindow.visible){
                 configled.color=aString=="Dark" ? "lightblue" : "red"

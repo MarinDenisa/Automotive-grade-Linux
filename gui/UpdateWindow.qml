@@ -255,7 +255,7 @@ WindowType{
                     }
                 }
         }
-
+//aici e ala de se extinde
         Rectangle{
             id:updateBubble4
             width: mainw.width/4.8

@@ -5,6 +5,7 @@ import QtQuick.Window 2.5
 
 WindowType{
 
+
     Text{
         text: "<b>Installation guite AGL</b>"
         font{
