@@ -5,16 +5,6 @@ import Process 1.0
 
 WindowType{
 
-
-
-
-
-    property var light3: "stop"
-
-
-
-
-
     Text{
         id:titleConfig
         font.pixelSize: 40
@@ -86,7 +76,7 @@ WindowType{
             }
             onClicked: {
                 str="doi"
-                process1.start("/home/dragos/Desktop/GitHub/ota-gui/install_ota-lith.sh",["-i"])
+                process1.start("/home/dragos/Desktop/install_ota-lith.sh",["-i"])
             }
 
         }
@@ -166,7 +156,7 @@ WindowType{
 
             onClicked: {
                 str="doi"
-                process1.start("/home/dragos/Desktop/GitHub/ota-gui/install_ota-lith.sh",["-o"])
+                process1.start("/home/dragos/Desktop/install_ota-lith.sh",["-o"])
             }
         }
 
@@ -240,9 +230,13 @@ WindowType{
                     color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
                     radius:mainw.width/192
                 }
+
+
                 onClicked: {
                     str="doi"
-                    process1.start("/home/dragos/Desktop/GitHub/ota-gui/install_akt_ota-cli.sh",["-a"])
+                    process1.start("/home/dragos/Desktop/install_akt_ota-cli.sh",["-a"])
+                  //  timerbut.running=true
+
                 }
             }
 
@@ -322,7 +316,7 @@ WindowType{
                     }
                     onClicked: {
                         str="doi"
-                        process1.start("/home/dragos/Desktop/GitHub/ota-gui/install_akt_ota-cli.sh",["-o"])
+                        process1.start("/home/dragos/Desktop/install_akt_ota-cli.sh",["-o"])
                     }
                 }
 
@@ -373,7 +367,7 @@ WindowType{
                 color: aString=="Dark" ? "white" : "black"
                 text: "Informatii pentru instalare"
                 anchors{
-                    top: configBubble3.bottom
+                    top: parent.top
                     left: parent.left
                     topMargin: mainw.width/96
                     leftMargin: 20

@@ -34,18 +34,22 @@ Window {
 
     property var aString:"Dark"
     property var aType: "normal"
-    property var str: "unu"
+    property var str: "doi"
     property var x:""
     property var y:""
     property var z:""
+    property var w:0
     property var light1: x=="" ? "stop" : "run"
     property var light2: y=="" ? "stop" : "run"
     property var light4: z=="" ? "stop" : "run"
+    property var light3: w==0 ? "run" : "stop"
+    property var lbar: 1000
 
 
     function fct(){
             if(configWindow.visible){
                 configled.color=aString=="Dark" ? "lightblue" : "red"
+                txt.text+="\nConfigWindow:\n"
             }
             else{
                 configled.color=aString=="Dark" ? "#132f4d" : "#A49393"
@@ -53,18 +57,21 @@ Window {
 
             if(deviceWindow.visible){
                 deviceled.color=aString=="Dark" ? "lightblue" : "red"
+                txt.text+="\nDeviceWindow:\n"
             }
             else{
                 deviceled.color=aString=="Dark" ? "#132f4d" : "#A49393"
             }
             if(updateWindow.visible){
                 updateled.color=aString=="Dark" ? "lightblue" : "red"
+                txt.text+="\nUpdateWindow:\n"
             }
             else{
                 updateled.color=aString=="Dark" ? "#132f4d" : "#A49393"
             }
             if(helpWindow.visible){
                 helpled.color=aString=="Dark" ? "lightblue" : "red"
+                txt.text+="\nHelpWindow:\n"
             }
             else{
                 helpled.color=aString=="Dark" ? "#132f4d" : "#A49393"
@@ -96,6 +103,26 @@ Window {
         onReadyReadStandardOutput: {
             outp = process2.readAll()
             x=outp
+        }
+    }
+
+    Process {
+        id: process5
+
+        property string outp: ""
+
+
+        onStarted: print("Started")
+        onFinished:{
+
+            print("Closed")
+        }
+
+        onErrorOccurred: console.log("Error Ocuured: ", error)
+
+        onReadyReadStandardOutput: {
+            outp = process5.readAll()
+            w=outp
         }
     }
 
@@ -144,11 +171,28 @@ Window {
         process2.start("/home/dragos/Desktop/existd.sh",[""])
         process3.start("/home/dragos/Desktop/existcli.sh",[""])
         process4.start("/home/dragos/Desktop/existakt.sh",[""])
+        process5.start("/home/dragos/Desktop/installex.sh",[""])
     }
 
     Component.onCompleted: verifyInstalls()
 
 
+    Timer{
+        id: timerbut
+        running: false
+        repeat: true
+        interval: 2000
+        onTriggered:{
+            if(lbar>1.5)
+            {
+                lbar=lbar-0.2
+            }
+
+            //console.log(lbar)
+        }
+
+
+    }
 
     Process {
         id: process1
@@ -156,9 +200,14 @@ Window {
         property string output: ""
 
 
-        onStarted: print("Started")
-        onFinished:{
+        onStarted:{
+            lbar=5
 
+            print("Started")
+            timerbut.running = true
+        }
+        onFinished:{
+            lbar=1
             print("Closed")
         }
 
@@ -347,6 +396,7 @@ Window {
                 }
                 onClicked: {
                     aString = aString=="Dark"  ? "Light" : "Dark"
+                    fct()
                 }
             }
         }
@@ -395,13 +445,32 @@ Window {
                     leftMargin: sidebarCover.width==80 ? 15 : 100
                     rightMargin: sidebarCover.width==80 ? 15 : 100
 
-                    topMargin: 50
-                    bottomMargin: 50
+                    topMargin: 30
+                    bottomMargin: 30
 
                 }
-                color:"transparent"
+                color:"green"
                 ProgressBar{
-                    anchors.fill: parent
+                    rotation: 180
+                    anchors.centerIn: parent
+                    background: Rectangle {
+                           implicitWidth: progressbar.width
+                           implicitHeight: progressbar.height
+                           color: "white"
+                           radius: 3
+                       }
+                    contentItem: Item
+                    {
+                            implicitWidth: progressbar.width
+                            implicitHeight: progressbar.height
+
+                            Rectangle {
+                                width: progressbar.width
+                                height: progressbar.height/lbar
+                                radius: 2
+                                color: "green"
+                            }
+                        }
                 }
             }
             Rectangle{
@@ -897,7 +966,7 @@ Window {
                         function append()
                         {
 
-                            txt.cursorPosition = txt.length-25
+                            txt.cursorPosition = txt.length-8
                         }
                     }
 
