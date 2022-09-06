@@ -46,6 +46,11 @@ Window {
     property var lbar: 1000
 
 
+    function basename(str)
+    {
+        return (str.slice(str.lastIndexOf("/")+1))
+    }
+
     function fct(){
             if(configWindow.visible){
                 configled.color=aString=="Dark" ? "lightblue" : "red"
@@ -958,7 +963,7 @@ Window {
                         readOnly:           true
                         textFormat:         TextEdit.RichText
 
-                        text:  "here"
+                        text:  ""
                         width: parent.width
                         height: parent.height
 

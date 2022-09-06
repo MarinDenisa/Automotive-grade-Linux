@@ -16,6 +16,15 @@ WindowType{
     property var lightup2: "stop"
 
 
+    property var locale: Qt.locale()
+        property date currentDate: new Date()
+        property string dateString
+
+        Component.onCompleted: {
+            dateString = currentDate.toLocaleDateString();
+            print(Date.fromLocaleDateString(dateString));
+        }
+
 
     Text{
         id:titleUpdate
@@ -242,11 +251,9 @@ WindowType{
             FileDialog{
                     id:fileDialog
                     onAccepted:{
-                        textMetrics.text = this.fileUrl
+                        textMetrics.text = basename((fileDialog.currentFile).toString())
                     }
                 }
-
-
         }
 
         Rectangle{
@@ -308,7 +315,7 @@ WindowType{
                 }
 
             Text {
-
+                id:filename
                 text: textMetrics.text
                 font.pixelSize: textMetrics.font.pixelSize
                 color: aString=="Dark" ? "white" : "black"
@@ -338,7 +345,11 @@ WindowType{
                     color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
                     radius:mainw.width/192
                 }
-                onClicked: scriptLauncher.launchScript()
+                onClicked:{
+                    dataModel.append({name: textMetrics.text, text:dateString})
+                    console.log(dataModel.get(0).check)
+                }
+
             }
 
             Text{
@@ -447,27 +458,22 @@ WindowType{
                 }
                 TableViewColumn {
 
-                            id:checkcolumn1
+                    role: "check"
+                    title: "Update"
+                    delegate: Item {
 
-                            role: "check"
-                            title: "Update"
-                            delegate: Item {
-
-                                anchors.fill: parent
-                                CheckBox {
-                                    id:checkbox
-                                    //anchors.fill:parent
-
-                                    anchors.centerIn: parent
-                                    checked: false
-                                }
-                            }
+                        anchors.fill: parent
+                        CheckBox {
+                            id:checkbox
+                            anchors.centerIn: parent
+                            checked: false
+                        }
+                    }
                 }
 
                 itemDelegate: Item {
                     Text {
                         anchors.centerIn: parent
-                       //renderType: Text.NativeRendering
                         text: styleData.value
                     }
 
@@ -476,24 +482,7 @@ WindowType{
 
             ListModel
             {
-                        id: dataModel
-                        ListElement {
-                            name: "filename1"
-                            text: "01.01.2022"
-                        }
-                        ListElement {
-                            name: "filename2"
-                            text: "25.02.2022"
-                        }
-                        ListElement {
-                            name: "tst.txt"
-                            text: "12.06.2022"
-                        }
-                        ListElement {
-                            name: "file"
-                            text: "22.10.2022"
-                        }
-
+                 id: dataModel
             }
 
 
