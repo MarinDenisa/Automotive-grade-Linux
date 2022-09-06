@@ -2,10 +2,7 @@
 
 aktualizrconfig() {
 	
-	yes | sudo apt-get install jq
-	cd ${HOME}/Desktop/otagui/ota-lith/
-	./scripts/gen-device.sh
-	cd .. 
+	cd ${HOME}/Desktop/otagui
 
 	yes | git clone --recursive https://github.com/advancedtelematic/aktualizr
 	cd aktualizr/
