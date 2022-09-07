@@ -258,7 +258,8 @@ WindowType{
                     id:fileDialog
                     onAccepted:{
                         textMetrics.text = basename((fileDialog.currentFile).toString())
-                        dplusf = "-a "+ dplusf +"*"+ basename((fileDialog.currentFile).toString())
+
+                        dplusf = "-a "+ basename((fileDialog.currentFile).toString())+"*"+dplusf
                         console.log(dplusf)
                     }
                 }
@@ -357,6 +358,7 @@ WindowType{
                     dataModel.append({name: textMetrics.text, text:dateString})
                     process1.start("scripts/createToml.sh",[dplusf])
                     console.log(dataModel.get(0).check)
+                    dplusf=copydev
                 }
 
             }

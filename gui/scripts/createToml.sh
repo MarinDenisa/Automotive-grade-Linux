@@ -5,11 +5,12 @@ launch-update() {
 	update_id=$(${HOME}/.cargo/bin/ota update create -t ./$file)
 	update_id="${update_id%\"}"
 	update_id="${update_id#\"}"
-	#device_id=$(ls ./ota-ce-gen/devices | head -1)
+	#device_id=$(ls ../ota-lith/ota-ce-gen/devices | head -1)
 	#echo "device ID - $device_id"
 	#echo "update ID - $update_id"
 	#echo "${HOME}/.cargo/bin/ota update launch --update $update_id --device $device_id"
 	${HOME}/.cargo/bin/ota update launch --update $update_id --device $device_id
+	#echo "update succesfull"
 }
 
 Help() {
@@ -91,12 +92,12 @@ while getopts ":hl:n:a:" option; do
 	  	
 		a) #create toml and update
 			set -f
-			ISF="*"
+			IFS="*"
 			array=($OPTARG)
 			fileName=${array[0]}
 			device_id=${array[1]}
-			echo $fileName
-			echo $device_id
+			echo "file: $fileName"
+			echo "device: $device_id"
 			generate-tome
 			echo "update launch"
 		 	launch-update

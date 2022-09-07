@@ -48,6 +48,8 @@ Help(){
 ota-lith-config() {
 
 	cd ${HOME}/Desktop/
+	mkdir otagui
+	cd otagui
 	yes | git clone https://github.com/simao/ota-lith.git
 	
 	cd ota-lith/

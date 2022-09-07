@@ -45,6 +45,7 @@ Window {
     property var light3: w==0 ? "run" : "stop"
     property var lbar: 1000
     property var dplusf: ""
+    property var copydev: ""
 
 
     function basename(str)

@@ -2,13 +2,13 @@
 
 run_docker() {
 	echo "Starting Docker..."
-	docker-compose -f /ota-lith/ota-ce.yaml up --detach
+	docker-compose -f ../ota-lith/ota-ce.yaml up --detach
 	echo "Docker is Running."
 }
 
 stop_docker() {
 	echo "Stopping Docker..."
-	docker-compose -f /ota-lith/ota-ce.yaml stop
+	docker-compose -f ../ota-lith/ota-ce.yaml stop
 	echo "Docker stopped."
 }
 
