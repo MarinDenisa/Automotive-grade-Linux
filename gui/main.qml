@@ -46,6 +46,7 @@ Window {
     property var lbar: 1000
     property var dplusf: ""
     property var copydev: ""
+    property var contor:0
 
 
     function basename(str)
@@ -180,6 +181,25 @@ Window {
             y=outp
         }
     }
+    Process {
+        id: process8
+
+        property string outp: ""
+
+
+        onStarted: print("Started")
+        onFinished:{
+
+            print("Closed")
+        }
+
+        onErrorOccurred: console.log("Error Ocuured: ", error)
+
+        onReadyReadStandardOutput: {
+            outp = process8.readAll()
+            y=outp
+        }
+    }
 
 
     function verifyInstalls(){
@@ -210,6 +230,23 @@ Window {
 
 
     }
+    function stopDc(){
+        if(contor==10){
+            mainw.close()
+        }
+    }
+
+    Timer{
+        id:timi
+        interval: 500
+        running: false
+        repeat: true
+        onTriggered:{
+            contor=contor+1
+            stopDc()
+        }
+    }
+
 
     Process {
         id: process1
@@ -374,7 +411,12 @@ Window {
                     verticalCenter: parent.verticalCenter
                     rightMargin: 10
                 }
-                onClicked: mainw.close()
+
+
+                onClicked: {
+                    process8.start("scripts/docker.sh",["-s"])
+                    timi.running=true
+                }
             }
 
             CircleButtons{
