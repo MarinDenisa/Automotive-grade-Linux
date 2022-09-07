@@ -73,6 +73,9 @@ WindowType{
                 color: "black"
                 anchors.centerIn: parent
             }
+            onClicked:{
+                process1.start("scripts/genDevice.sh",[" "])
+            }
 
 
 

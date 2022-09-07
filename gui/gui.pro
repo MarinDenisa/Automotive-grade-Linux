@@ -42,6 +42,7 @@ DISTFILES += \
     scripts/existakt.sh \
     scripts/existcli.sh \
     scripts/existd.sh \
+    scripts/genDevice.sh \
     scripts/install_akt_ota-cli.sh \
     scripts/install_ota-lith.sh \
     scripts/installex.sh \

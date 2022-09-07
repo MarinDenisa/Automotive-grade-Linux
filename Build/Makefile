@@ -65,6 +65,7 @@ DIST          = ../gui/scripts/aktualizr.sh \
 		../gui/scripts/existakt.sh \
 		../gui/scripts/existcli.sh \
 		../gui/scripts/existd.sh \
+		../gui/scripts/genDevice.sh \
 		../gui/scripts/install_akt_ota-cli.sh \
 		../gui/scripts/install_ota-lith.sh \
 		../gui/scripts/installex.sh \
