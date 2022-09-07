@@ -95,6 +95,9 @@ WindowType{
                 color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
                 radius:mainw.width/192
             }
+            onClicked:{
+                process6.start("scripts/docker.sh",[""])
+            }
         }
 
         Text{
@@ -170,6 +173,9 @@ WindowType{
             background: Rectangle{
                 color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
                 radius:mainw.width/192
+            }
+            onClicked:{
+                process7.start("scripts/docker.sh",[""])
             }
         }
 
@@ -349,7 +355,7 @@ WindowType{
                 }
                 onClicked:{
                     dataModel.append({name: textMetrics.text, text:dateString})
-                    process1.start("/home/denisa/Desktop/createToml.sh",[dplusf])
+                    process1.start("scripts/createToml.sh",[dplusf])
                     console.log(dataModel.get(0).check)
                 }
 

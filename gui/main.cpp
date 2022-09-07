@@ -6,15 +6,18 @@
 #include "MyProcess.h"
 #include <QtGui/QGuiApplication>
 #include <QQmlContext>
+#include <QQuickView>
 
 
 int main(int argc, char *argv[])
 {
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+#endif
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
 
-   // qmlRegisterType<TableModel>("TableModel", 0, 1, "TableModel");
     QQmlApplicationEngine engine;
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
@@ -23,6 +26,10 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
+
+
+    engine.rootContext()->setContextProperty("CurDirPath", QString(QDir::currentPath()));
+
 
 
 

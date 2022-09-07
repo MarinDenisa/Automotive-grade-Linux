@@ -182,14 +182,16 @@ Window {
 
 
     function verifyInstalls(){
-        process2.start("/home/dragos/Desktop/existd.sh",[""])
-        process3.start("/home/dragos/Desktop/existcli.sh",[""])
-        process4.start("/home/dragos/Desktop/existakt.sh",[""])
-        process5.start("/home/dragos/Desktop/installex.sh",[""])
+        process2.start("scripts/existd.sh",[" "])
+        process3.start("scripts/existcli.sh",[" "])
+        process4.start("scripts/existakt.sh",[" "])
+        process5.start("scripts/installex.sh",[" "])
     }
 
-    Component.onCompleted: verifyInstalls()
-
+    Component.onCompleted: {
+        console.log(CurDirPath)
+        verifyInstalls()
+}
 
     Timer{
         id: timerbut
@@ -229,6 +231,55 @@ Window {
 
         onReadyReadStandardOutput: {
             output = process1.readAll()
+            txt.text += output
+        }
+    }
+
+    Process {
+        id: process6
+
+        property string output: ""
+
+
+        onStarted:{
+            lbar=5
+
+            print("Started")
+            timerbut.running = true
+        }
+        onFinished:{
+            lbar=1
+            print("Closed")
+        }
+
+        onErrorOccurred: console.log("Error Ocuured: ", error)
+
+        onReadyReadStandardOutput: {
+            output = process6.readAll()
+            txt.text += output
+        }
+    }
+    Process {
+        id: process7
+
+        property string output: ""
+
+
+        onStarted:{
+            lbar=5
+
+            print("Started")
+            timerbut.running = true
+        }
+        onFinished:{
+            lbar=1
+            print("Closed")
+        }
+
+        onErrorOccurred: console.log("Error Ocuured: ", error)
+
+        onReadyReadStandardOutput: {
+            output = process7.readAll()
             txt.text += output
         }
     }

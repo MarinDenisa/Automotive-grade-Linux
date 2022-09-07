@@ -1,6 +1,3 @@
-
-
-
 QT += quick \
     widgets
 
@@ -37,5 +34,25 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     MyProcess.h
+
+DISTFILES += \
+    scripts/aktualizr.sh \
+    scripts/createToml.sh \
+    scripts/docker.sh \
+    scripts/existakt.sh \
+    scripts/existcli.sh \
+    scripts/existd.sh \
+    scripts/install_akt_ota-cli.sh \
+    scripts/install_ota-lith.sh \
+    scripts/installex.sh \
+    aktualizr.sh\
+    createToml.sh \
+    docker.sh \
+    existakt.sh \
+    existcli.sh \
+    existd.sh \
+    install_akt_ota-cli.sh \
+    install_ota-lith.sh \
+    installex.sh
 
 

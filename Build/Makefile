@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = gui1.0.0
-DISTDIR = /home/dragos/Desktop/GitHub/ota-gui/build-gui-Desktop-Debug/.tmp/gui1.0.0
+DISTDIR = /home/dragos/Desktop/GitHub/ota-gui/Build/.tmp/gui1.0.0
 LINK          = g++
 LFLAGS        = 
 LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt5Quick.so /usr/lib/x86_64-linux-gnu/libQt5Widgets.so /usr/lib/x86_64-linux-gnu/libQt5Gui.so /usr/lib/x86_64-linux-gnu/libQt5Qml.so /usr/lib/x86_64-linux-gnu/libQt5Network.so /usr/lib/x86_64-linux-gnu/libQt5Core.so /usr/lib/x86_64-linux-gnu/libGL.so -lpthread   
@@ -59,7 +59,25 @@ OBJECTS       = MyProcess.o \
 		main.o \
 		qrc_qml.o \
 		moc_MyProcess.o
-DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
+DIST          = ../gui/scripts/aktualizr.sh \
+		../gui/scripts/createToml.sh \
+		../gui/scripts/docker.sh \
+		../gui/scripts/existakt.sh \
+		../gui/scripts/existcli.sh \
+		../gui/scripts/existd.sh \
+		../gui/scripts/install_akt_ota-cli.sh \
+		../gui/scripts/install_ota-lith.sh \
+		../gui/scripts/installex.sh \
+		../gui/aktualizr.sh \
+		../gui/createToml.sh \
+		../gui/docker.sh \
+		../gui/existakt.sh \
+		../gui/existcli.sh \
+		../gui/existd.sh \
+		../gui/install_akt_ota-cli.sh \
+		../gui/install_ota-lith.sh \
+		../gui/installex.sh \
+		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/sanitize.conf \
@@ -119,7 +137,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
-		../gui/.qmake.stash \
+		../.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -212,7 +230,7 @@ Makefile: ../gui/gui.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.c
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf \
-		.qmake.stash \
+		../.qmake.stash \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf \
@@ -295,7 +313,7 @@ Makefile: ../gui/gui.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.c
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/qt_config.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_post.prf:
-.qmake.stash:
+../.qmake.stash:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exclusive_builds.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/toolchain.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/default_pre.prf:
@@ -344,7 +362,6 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) $(TARGET) 
-	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -373,6 +390,15 @@ qrc_qml.cpp: ../gui/qml.qrc \
 		../gui/ConfigWindow.qml \
 		../gui/UpdateWindow.qml \
 		../gui/main.qml \
+		../gui/scripts/aktualizr.sh \
+		../gui/scripts/existd.sh \
+		../gui/scripts/install_akt_ota-cli.sh \
+		../gui/scripts/docker.sh \
+		../gui/scripts/existcli.sh \
+		../gui/scripts/createToml.sh \
+		../gui/scripts/existakt.sh \
+		../gui/scripts/install_ota-lith.sh \
+		../gui/scripts/installex.sh \
 		../gui/Icon/half-moon.png \
 		../gui/Icon/monitor.png \
 		../gui/Icon/ux.png \
@@ -401,7 +427,7 @@ compiler_moc_header_clean:
 moc_MyProcess.cpp: ../gui/MyProcess.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/dragos/Desktop/GitHub/ota-gui/build-gui-Desktop-Debug/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/dragos/Desktop/GitHub/ota-gui/gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtQuick -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtQml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../gui/MyProcess.h -o moc_MyProcess.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/dragos/Desktop/GitHub/ota-gui/Build/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/dragos/Desktop/GitHub/ota-gui/gui -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtQuick -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtQml -I/usr/include/x86_64-linux-gnu/qt5/QtNetwork -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I. -I/usr/include/c++/9 -I/usr/include/x86_64-linux-gnu/c++/9 -I/usr/include/c++/9/backward -I/usr/lib/gcc/x86_64-linux-gnu/9/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include ../gui/MyProcess.h -o moc_MyProcess.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:

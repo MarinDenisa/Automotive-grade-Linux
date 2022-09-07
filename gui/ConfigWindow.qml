@@ -76,7 +76,7 @@ WindowType{
             }
             onClicked: {
                 str="doi"
-                process1.start("/home/dragos/Desktop/install_ota-lith.sh",["-i"])
+                process1.start("scripts/install_ota-lith.sh",["-i"])
             }
 
         }
@@ -156,7 +156,7 @@ WindowType{
 
             onClicked: {
                 str="doi"
-                process1.start("/home/dragos/Desktop/install_ota-lith.sh",["-o"])
+                process1.start("scripts/install_ota-lith.sh",["-o"])
             }
         }
 
@@ -234,7 +234,7 @@ WindowType{
 
                 onClicked: {
                     str="doi"
-                    process1.start("/home/dragos/Desktop/install_akt_ota-cli.sh",["-a"])
+                    process1.start("scripts/install_akt_ota-cli.sh",["-a"])
                   //  timerbut.running=true
 
                 }
@@ -316,7 +316,7 @@ WindowType{
                     }
                     onClicked: {
                         str="doi"
-                        process1.start("/home/dragos/Desktop/install_akt_ota-cli.sh",["-o"])
+                        process1.start("scripts/install_akt_ota-cli.sh",["-o"])
                     }
                 }
 

@@ -24,5 +24,14 @@
         <file>Icon/monitor.png</file>
         <file>Icon/refresh-cw.png</file>
         <file>Icon/tool.png</file>
+        <file>scripts/aktualizr.sh</file>
+        <file>scripts/createToml.sh</file>
+        <file>scripts/docker.sh</file>
+        <file>scripts/existakt.sh</file>
+        <file>scripts/existcli.sh</file>
+        <file>scripts/existd.sh</file>
+        <file>scripts/install_akt_ota-cli.sh</file>
+        <file>scripts/install_ota-lith.sh</file>
+        <file>scripts/installex.sh</file>
     </qresource>
 </RCC>
