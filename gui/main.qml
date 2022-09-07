@@ -185,7 +185,7 @@ Window {
     function verifyInstalls(){
         process2.start("scripts/existd.sh",[" "])
         process3.start("scripts/existcli.sh",[" "])
-        process4.start("scripts/existakt.sh",[" "])
+        process4.start("../existakt.sh",[" "])
         process5.start("scripts/installex.sh",[" "])
     }
 
@@ -1079,6 +1079,7 @@ Window {
                     }
                     onClicked:{
                         process1.kill()
+                        process7.kill()
                         txt.text += "\nProcess stopped."
                     }
                 }

@@ -96,7 +96,7 @@ WindowType{
                 radius:mainw.width/192
             }
             onClicked:{
-                process6.start("scripts/docker.sh",[""])
+                process6.start("scripts/docker.sh",["-r"])
             }
         }
 
@@ -175,7 +175,7 @@ WindowType{
                 radius:mainw.width/192
             }
             onClicked:{
-                process7.start("scripts/docker.sh",[""])
+                process7.start("scripts/aktualizr.sh",[""])
             }
         }
 
@@ -258,8 +258,8 @@ WindowType{
                     id:fileDialog
                     onAccepted:{
                         textMetrics.text = basename((fileDialog.currentFile).toString())
-
-                        dplusf = "-a "+ basename((fileDialog.currentFile).toString())+"*"+dplusf
+                        copydev = dplusf
+                        dplusf = "-a"+ basename((fileDialog.currentFile).toString())+"*"+dplusf
                         console.log(dplusf)
                     }
                 }
@@ -356,8 +356,8 @@ WindowType{
                 }
                 onClicked:{
                     dataModel.append({name: textMetrics.text, text:dateString})
-                    process1.start("scripts/createToml.sh",[dplusf])
-                    console.log(dataModel.get(0).check)
+                    process1.start("../createToml.sh",[dplusf])
+                    console.log(dplusf)
                     dplusf=copydev
                 }
 
