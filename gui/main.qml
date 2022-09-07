@@ -44,6 +44,7 @@ Window {
     property var light4: z=="" ? "stop" : "run"
     property var light3: w==0 ? "run" : "stop"
     property var lbar: 1000
+    property var dplusf: ""
 
 
     function basename(str)
@@ -55,6 +56,7 @@ Window {
     {
         return (str.slice(0,str.lastIndexOf(".")))
     }
+
 
 
 

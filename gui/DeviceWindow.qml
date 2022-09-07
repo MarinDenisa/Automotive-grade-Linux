@@ -188,6 +188,7 @@ WindowType{
         id:fileDialog
         onAccepted:{
             textMetricsDev.text = rmExt(basename((fileDialog.currentFile).toString()))
+            dplusf= rmExt(basename((fileDialog.currentFile).toString()))
         }
     }
 

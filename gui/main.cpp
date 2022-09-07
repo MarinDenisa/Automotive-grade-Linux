@@ -4,6 +4,8 @@
 #include <qqml.h>
 #include <QtQml>
 #include "MyProcess.h"
+#include <QtGui/QGuiApplication>
+#include <QQmlContext>
 
 
 int main(int argc, char *argv[])
@@ -11,6 +13,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
     QGuiApplication app(argc, argv);
+
    // qmlRegisterType<TableModel>("TableModel", 0, 1, "TableModel");
     QQmlApplicationEngine engine;
 
@@ -20,6 +23,9 @@ int main(int argc, char *argv[])
         if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
+
+
+
 
     qmlRegisterType<Process>( "Process", 1, 0, "Process" );
 
