@@ -5,11 +5,12 @@ launch-update() {
 	update_id=$(${HOME}/.cargo/bin/ota update create -t ./$file)
 	update_id="${update_id%\"}"
 	update_id="${update_id#\"}"
-	device_id=$(ls -d ../ota-lith/ota-ce-gen/devices/*/ |cut -f5 -d'/')
+	#device_id=$(ls ../ota-lith/ota-ce-gen/devices | head -1)
 	#echo "device ID - $device_id"
 	#echo "update ID - $update_id"
 	#echo "${HOME}/.cargo/bin/ota update launch --update $update_id --device $device_id"
 	${HOME}/.cargo/bin/ota update launch --update $update_id --device $device_id
+	#echo "update succesfull"
 }
 
 Help() {
@@ -59,6 +60,7 @@ generate-tome() {
 
 fileName=null
 file=null
+device_id=null
 
 while getopts ":hl:n:a:" option; do
 	case $option in
@@ -79,7 +81,7 @@ while getopts ":hl:n:a:" option; do
 		 	
       	n) # Enter a name
 			fileName=$OPTARG
-			#echo $fileName
+			echo $fileName
 			generate-tome;;
 			
 		:)
@@ -89,10 +91,15 @@ while getopts ":hl:n:a:" option; do
 			exit;;
 	  	
 		a) #create toml and update
-			fileName=$OPTARG
-			echo $fileName
+			set -f
+			IFS="*"
+			array=($OPTARG)
+			fileName=${array[0]}
+			device_id=${array[1]}
+			echo "file: $fileName"
+			echo "device: $device_id"
 			generate-tome
-			#echo "update launch"
+			echo "update launch"
 		 	launch-update
 		 	exit;;
      	\?) # Invalid option
