@@ -183,9 +183,9 @@ WindowType{
             radius: mainw.width/192
             color: aString=="Dark" ? "darkgray" : " lightgray"
             anchors{
-                top: configBubble1.bottom
+                top: infoDocker.bottom
                 left: parent.left
-                topMargin: mainw.width/12
+                topMargin: mainw.width/48
                 leftMargin: mainw.width/19.2
             }
 
@@ -268,9 +268,9 @@ WindowType{
                 radius: mainw.width/192
                 color: aString=="Dark" ? "darkgray" : " lightgray"
                 anchors{
-                    top: configBubble2.bottom
+                    top: infoDocker.bottom
                     left: configBubble3.right
-                    topMargin: mainw.width/12
+                    topMargin: mainw.width/48
                     leftMargin: mainw.width/19.2
                 }
 
@@ -346,31 +346,64 @@ WindowType{
 
             Rectangle{
                 id:infoDocker
-
+                height: mainw.width/9.6+(mainw.width-960)/960*115
                 radius: mainw.width/192
                 color: aString=="Dark" ? "darkgray" : " lightgray"
                 anchors{
                     top: configBubble1.bottom
                     left: parent.left
-                    right: parent.right
-                    bottom: configBubble3.top
+                    right: configBubble2.right
                     topMargin: mainw.width/48
                     leftMargin: mainw.width/19.2
-                    bottomMargin: mainw.width/48
-                    rightMargin: 20
+
+                }
+                RoundButton{
+                    width: 10
+                    height: 10
+                    radius: 5
+                    anchors{
+                        top:parent.top
+                        right: parent.right
+                        topMargin: 10
+                        rightMargin: 10
+                    }
+                    background: Rectangle{
+                        radius:10
+                        color: light2=="stop"? "red" : "green"
+                    }
                 }
                 Text{
                     id:dockerText
                     font.pixelSize: mainw.width/80
                     color: aString=="Dark" ? "white" : "black"
-                    text: "Install Docker"
+                    text: "Configure Docker"
+                    font.bold: true
                     anchors{
                         top: parent.top
                         left: parent.left
                         topMargin: mainw.width/96
-                        leftMargin: mainw.width/48
+                        leftMargin: mainw.width/45
                     }
 
+
+                }
+                Text{
+                    id:configText
+                    font.pixelSize: mainw.width/96+(mainw.width-960)/960*5
+                    color: aString=="Dark" ? "white" : "black"
+                    text:
+    "   Insert in the terminal the follow commands:
+        -sudo usermod -aG docker ${USER}
+        -sudo groupadd docker
+        -sbt docker:publishLocal
+        -sudo chown $USER /var/run/docker.sock"
+
+                    anchors{
+                        top: dockerText.bottom
+                        left: parent.left
+                        topMargin: mainw.width/120
+                        leftMargin: 20
+                    }
 
                 }
 
@@ -380,10 +413,9 @@ WindowType{
                     width: mainw.width/16
                     height: mainw.height/28
                     anchors{
-                        top:parent.top
-                        left: parent.left
-                        topMargin: mainw.width/96
-                        leftMargin: mainw.width/6.85
+                        right: parent.right
+                        verticalCenter: parent.verticalCenter
+                        rightMargin: 20
                     }
                     background: Rectangle{
                         color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
@@ -391,41 +423,15 @@ WindowType{
                     }
 
 
-                Text{
-                id:dockerText1
-                font.pixelSize: mainw.width/80
-                color: aString=="Dark" ? "white" : "black"
-                text: "Open Docker"
-                anchors{
-                    top: parent.top
-                    left: parent.left
-                    topMargin: mainw.width/480
-                    leftMargin: mainw.width/7.38
-                }
-                }
+
 }
-                RoundButton{
-                    id:configBubbleDocker1
-                    radius: mainw.width/192
-                    width: mainw.width/16
-                    height: mainw.height/28
-                    anchors{
-                        top: parent.top
-                        left: parent.left
-                        topMargin: mainw.width/96
-                        leftMargin: mainw.width/2.474
-                    }
-                    background: Rectangle{
-                        color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
-                        radius:mainw.width/192
-                    }
-        }
+
 }
 
 
 
 
-        Rectangle{
+        /*Rectangle{
             id:infoConfig
 
             radius: mainw.width/192
@@ -444,7 +450,13 @@ WindowType{
                 id:configText
                 font.pixelSize: mainw.width/80
                 color: aString=="Dark" ? "white" : "black"
-                text: "Informatii pentru instalare"
+                text:
+"Instert in the terminal the follow commands:
+sudo usermod -aG docker ${USER}
+sudo groupadd docker
+sbt docker:publishLocal
+sudo chown $USER /var/run/docker.sock"
+
                 anchors{
                     top: parent.top
                     left: parent.left
@@ -455,6 +467,36 @@ WindowType{
             }
 
 
-    }
+    }*/
+        Rectangle{
+            color: aString=="Dark" ? "darkgray" : " lightgray"
+            anchors{
+
+                top: infoDocker.bottom
+                bottom: configBubble3.top
+                topMargin: 0
+                bottomMargin: 0
+                horizontalCenter: configBubble3.horizontalCenter
+
+
+            }
+            width: mainw.width/200
+        }
+
+        Rectangle{
+            color: aString=="Dark" ? "darkgray" : " lightgray"
+            anchors{
+
+                top: infoDocker.bottom
+                bottom: configBubble4.top
+                topMargin: 0
+                bottomMargin: 0
+                horizontalCenter: configBubble4.horizontalCenter
+
+
+            }
+            width: mainw.width/200
+        }
+
 
 }

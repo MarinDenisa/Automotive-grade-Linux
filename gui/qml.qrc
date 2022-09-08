@@ -33,5 +33,7 @@
         <file>scripts/install_akt_ota-cli.sh</file>
         <file>scripts/install_ota-lith.sh</file>
         <file>scripts/installex.sh</file>
+        <file>Icon/Dark-1.png</file>
+        <file>Icon/Light-1.png</file>
     </qresource>
 </RCC>

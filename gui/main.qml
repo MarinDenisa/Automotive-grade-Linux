@@ -5,8 +5,10 @@ import QtQml.Models 2.5
 import QtQuick.Layouts 1.0
 import QtQuick.Dialogs 1.2
 import QtGraphicalEffects 1.0
+import QtQuick.Layouts 1.3
 import Process 1.0
-
+import QtQuick.Controls 2.3
+import QtQuick 2.10
 
 Window {
     id:mainw
@@ -60,7 +62,118 @@ Window {
     property date currentDate: new Date()
     property string dateString
 
+    property int previousX: 0
+    property var previousX1:0
+    property var previousY: 0
 
+    MouseArea{
+        id:rightResize
+        width: 8
+        anchors{
+            right: parent.right
+            top: parent.top
+            bottom: parent.bottom
+            rightMargin: 0
+            topMargin: 8
+            bottomMargin: 8
+
+        }
+        cursorShape: Qt.SizeHorCursor
+        onPressed: previousX = mouseX
+
+        onMouseXChanged: {
+            var dx =  mouseX - previousX
+            mainw.setWidth(parent.width + dx)
+        }
+
+    }
+
+    /*MouseArea{
+        id:leftResize
+        width: 8
+        anchors{
+            left: parent.left
+            top: parent.top
+            bottom: parent.bottom
+        }
+        cursorShape: Qt.SizeHorCursor
+        onPressed: previousX1 = mouseX
+
+        onMouseXChanged: {
+            var ral =  mouseX - previousX1
+            //mainw.setX(mainw.x + ral)
+            mainw.setWidth(parent.width - ral)
+        }
+
+    }*/
+
+   /* MouseArea{
+        id:diagresize
+        width: 8
+        height: 8
+        anchors{
+            bottom: parent.bottom
+            right: parent.right
+        }
+        cursorShape: Qt.
+    }*/
+
+
+    MouseArea{
+        id:bottomResize
+        height: 8
+        anchors{
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+            bottomMargin: 0
+            leftMargin: 8
+            rightMargin: 8
+        }
+        cursorShape: Qt.SizeVerCursor
+        onPressed: previousY = mouseY
+
+        onMouseYChanged: {
+            var dy =  mouseY - previousY
+            //mainw.setY(mainw.y + dy)
+            mainw.setHeight(parent.height + dy)
+        }
+
+    }
+
+Rectangle{
+    width:8
+    height:8
+    anchors{
+        right: parent.right
+        bottom: parent.bottom
+
+    }
+
+    MouseArea{
+        id: bottomRightResize
+        anchors.fill : parent
+        property variant clickPos: "1.1"
+        cursorShape: Qt.SizeFDiagCursor
+        property var previousX2:0
+        property var previousY2:0
+        onPressed:
+        {
+             previousX2=mouseX
+             previousY2=mouseY
+        }
+
+            onMouseXChanged: {
+                var dx = mouseX-previousX2
+                var dy = mouseY -  previousY2
+
+                mainw.setWidth(mainw.width+dx)
+                mainw.setHeight(mainw.height+dy)
+
+            }
+    }
+
+}
 
     function basename(str)
     {
@@ -444,6 +557,10 @@ Window {
                         }
                     }
                 cursorShape: Qt.DragMoveCursor
+
+
+
+
             }
 
             color: aString=="Dark" ? darkThemeColor1 : "rosybrown"
