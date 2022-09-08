@@ -12,13 +12,9 @@ import QtQuick.Controls 1.4
 
 
 WindowType{
-    property var lightup1: "stop"
-    property var lightup2: "stop"
 
 
-    property var locale: Qt.locale()
-        property date currentDate: new Date()
-        property string dateString
+        property var count:0
 
         Component.onCompleted: {
             dateString = currentDate.toLocaleDateString();
@@ -76,7 +72,7 @@ WindowType{
             }
             background: Rectangle{
                 radius:10
-                color: lightup1=="stop"? "red" : "green"
+                color: lightDocker=="stop"? "red" : "green"
             }
         }
 
@@ -98,6 +94,7 @@ WindowType{
             onClicked:{
                 curProcess=6
                 process6.start("scripts/docker.sh",["-r"])
+                process9.start("scripts/isDockerRunning.sh",[""])
             }
         }
 
@@ -156,7 +153,22 @@ WindowType{
             }
             background: Rectangle{
                 radius:10
-                color: lightup2=="stop"? "red" : "green"
+                color: lightAktualizr=="stop"? "red" : "green"
+            }
+        }
+        Timer{
+            id:timerAkt
+            interval:500
+            repeat:true
+            running: false
+            onTriggered: {
+                count=count+1
+                if(count%2==0){
+                    process10.start("scripts/isAktualizrRunning.sh",[""])
+                }
+                if(lightAktualizr!=="stop"){
+                    timerAkt.stop()
+                }
             }
         }
 
@@ -177,7 +189,13 @@ WindowType{
             }
             onClicked:{
                 curProcess=7
-                process7.start("scripts/aktualizr.sh",[""])
+                if(updateBubbleTextDevice2.text==""){
+                    txt.text+="Please select a device"
+                }
+                else{
+                process7.start("scripts/aktualizr.sh",["-r "+copydev])
+                timerAkt.start()
+                }
             }
         }
 
@@ -238,7 +256,14 @@ WindowType{
                     radius:mainw.width/192
 
                 }
-                onClicked: fileDialog.open()
+                onClicked:{
+                    if(updateBubbleTextDevice2.text==""){
+                        txt.text+="Please select a device"
+                    }
+                    else{
+                        fileDialog.open()
+                    }
+                }
             }
 
             Text{
@@ -258,6 +283,7 @@ WindowType{
 
             FileDialog{
                     id:fileDialog
+
                     onAccepted:{
                         textMetrics.text = basename((fileDialog.currentFile).toString())
                         copydev = dplusf
@@ -296,13 +322,15 @@ WindowType{
                 id:updateBubbleTextDevice2
                 font.pixelSize: mainw.width/90
                 color: aString=="Dark" ? "white" : "black"
-                text: "unknown"
+                text: qsTr(copydev)
+                elide: Text.ElideRight
                 anchors{
-
+                    right: parent.right
                     left: updateBubbleTextDevice1.right
                     verticalCenter: updateBubbleTextDevice1.verticalCenter
                     leftMargin: 2
                 }
+
             }
             Text{
                 id:updateBubbleTextFile1

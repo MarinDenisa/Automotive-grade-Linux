@@ -190,10 +190,14 @@ WindowType{
 
     FileDialog{
         id:fileDialog
+        //folder:
+         folder:"file../../ota-lith/ota-ce-gen/devices"
         onAccepted:{
+
             textMetricsDev.text = rmExt(basename((fileDialog.currentFile).toString()))
             dplusf= rmExt(basename((fileDialog.currentFile).toString()))
             copydev= rmExt(basename((fileDialog.currentFile).toString()))
+            dataModel.append({name: dplusf,text:dateString})
         }
     }
 
@@ -242,20 +246,20 @@ anchors{
 
 
             TableViewColumn {
-                width: 100
-                title: "Coloana"
-                role: "color"
+                width: 400
+                title: "Device Name"
+                role: "name"
 
             }
             TableViewColumn {
-                width: 100
-                title: "ViewCol"
+                width: 300
+                title: "Date"
                 role: "text"
             }
 
             itemDelegate: Item {
                 Text {
-                    anchors.right: parent.right
+                    anchors.left: parent.left
                     //renderType: Text.NativeRendering
                     text: styleData.value
                 }
@@ -290,22 +294,7 @@ anchors{
 
         ListModel {
             id: dataModel
-            ListElement {
-                color: "purple"
-                text: "pisici"
-            }
-            ListElement {
-                color: "pink"
-                text: "sunttare"
-            }
-            ListElement {
-                color: "green"
-                text: "Ralucaaa"
-            }
-            ListElement {
-                color: "green"
-                text: "purple"
-            }
+
             // }
 
 

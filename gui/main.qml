@@ -3,6 +3,7 @@ import QtQuick.Controls 2.5
 import QtQuick.Window 2.5
 import QtQml.Models 2.5
 import QtQuick.Layouts 1.0
+import QtQuick.Dialogs 1.2
 import QtGraphicalEffects 1.0
 import Process 1.0
 
@@ -43,11 +44,22 @@ Window {
     property var light2: y=="" ? "stop" : "run"
     property var light4: z=="" ? "stop" : "run"
     property var light3: w==0 ? "run" : "stop"
+    property var lightAktualizr: aktualizrRunning=="" ? "stop" : "run"
+    property var lightDocker: dockerRunning=="" ? "stop" : "run"
     property var lbar: 1000
     property var dplusf: ""
     property var copydev: ""
     property var contor:0
     property var curProcess: 0
+    property var dockerRunning: ""
+    property var aktualizrRunning: ""
+    property var dirPath: qsTr(CurDirPath).slice(0,qsTr(CurDirPath).lastIndexOf("/"))
+    property var dirPath2: qsTr(dirPath).slice(0,qsTr(dirPath).lastIndexOf("/"))
+    property string dirPathC: dirPath2+"/ota-lith/ota-ce-gen/devices"
+    property var locale: Qt.locale()
+    property date currentDate: new Date()
+    property string dateString
+
 
 
     function basename(str)
@@ -101,6 +113,7 @@ Window {
         deviceText.visible= sidebarCover.width==80 ? false : true
         updateText.visible= sidebarCover.width==80 ? false : true
         helpText.visible= sidebarCover.width==80 ? false : true
+        console.log(dirPathC)
     }
 
     Process {
@@ -208,6 +221,8 @@ Window {
         process3.start("scripts/existcli.sh",[" "])
         process4.start("../existakt.sh",[" "])
         process5.start("scripts/installex.sh",[" "])
+        process9.start("scripts/isDockerRunning.sh",[""])
+        process10.start("scripts/isAktualizrRunning.sh",[""])
     }
 
     Component.onCompleted: {
@@ -231,13 +246,14 @@ Window {
 
 
     }
- /*   function stopDc(){
-        if(contor==10){
+
+    function stopDc(){
+        if(contor==14){
             mainw.close()
         }
-    }*/
+    }
 
-    /*Timer{
+    Timer{
         id:timi
         interval: 500
         running: false
@@ -245,8 +261,9 @@ Window {
         onTriggered:{
             contor=contor+1
             stopDc()
+
         }
-    }*/
+    }
 
 
     Process {
@@ -322,6 +339,55 @@ Window {
             txt.text += output
         }
     }
+
+    Process {
+        id: process9
+
+        property string output: ""
+
+
+        onStarted:{
+            print("Started")
+        }
+        onFinished:{
+
+            print("Closed")
+        }
+
+        onErrorOccurred: console.log("Error Ocuured: ", error)
+
+        onReadyReadStandardOutput: {
+            output = process9.readAll()
+            dockerRunning = output
+        }
+    }
+
+    Process {
+        id: process10
+
+        property string outp: ""
+
+
+        onStarted: print("Started")
+        onFinished:{
+
+            print("Closed")
+        }
+
+        onErrorOccurred: console.log("Error Ocuured: ", error)
+
+        onReadyReadStandardOutput: {
+            outp = process10.readAll()
+            aktualizrRunning=outp
+        }
+    }
+
+    /*MessageDialog{
+        id:dockerStopping
+        title: "Docker"
+        text: "Docker is stopping..."
+        informativeText: "Please wait!"
+    }*/
     
     
     
@@ -415,9 +481,31 @@ Window {
 
 
                 onClicked: {
-                    //process8.start("scripts/docker.sh",["-s"])
-                    //timi.running=true
-                    mainw.close()
+                    if(lightDocker!=="stop" && lightAktualizr!=="stop")
+                    {
+                        process7.start("scripts/aktualizr.sh",["-s"])
+                        process8.start("scripts/docker.sh",["-s"])
+                        timi.running=true
+                        dockerStopping.visible=true
+
+                    }
+                    else if(lightDocker!=="stop" && lightAktualizr=="stop"){
+                        process8.start("scripts/docker.sh",["-s"])
+                        timi.running=true
+                        dockerStopping.visible=true
+                    }
+                    else if(lightDocker=="stop" && lightAktualizr!=="stop")
+                    {
+                        process7.start("scripts/aktualizr.sh",["-s"])
+                        mainw.close()
+                    }
+                    else
+                    {
+                        mainw.close()             
+                    }
+
+
+                    //mainw.close()
                 }
             }
 
@@ -1076,7 +1164,7 @@ Window {
                         function append()
                         {
 
-                            txt.cursorPosition = txt.length-8
+                            txt.cursorPosition = txt.length-1
                         }
                     }
 
@@ -1130,6 +1218,7 @@ Window {
                             process6.kill()
                             break
                         case 7:
+                            process7.start("scripts/aktualizr.sh",["-s "])
                             process7.kill()
                             break
                         }
@@ -1141,5 +1230,51 @@ Window {
 
 
 
+    }
+    Rectangle{
+        id:dockerStopping
+        visible:false
+        width: 240
+        height: 160
+        border.width: 5
+        border.color: "black"
+        anchors.centerIn: parent
+        Text{
+            id:title
+            anchors{
+
+                top: parent.top
+                topMargin: 10
+                horizontalCenter: parent.horizontalCenter
+            }
+            font.pixelSize: 20
+            text:"Docker"
+
+        }
+
+        Text{
+            id:text
+            anchors{
+
+                top: title.bottom
+                topMargin: 20
+                horizontalCenter: parent.horizontalCenter
+            }
+            font.pixelSize: 15
+            text:"Docker is stopping..."
+
+        }
+        Text{
+            id:infotext
+            anchors{
+
+                top: text.bottom
+                topMargin: 20
+                horizontalCenter: parent.horizontalCenter
+            }
+            font.pixelSize: 15
+            text:"Please wait!"
+
+        }
     }
 }

@@ -3,7 +3,8 @@
 run_docker() {
 	echo "Starting Docker..."
 	cd scripts
-	echo $(pwd)
+	touch dockerIsRunning
+	#echo $(pwd)
 	docker-compose -f ../../../ota-lith/ota-ce.yaml up --detach
 	echo "Docker is Running."
 }
@@ -11,7 +12,8 @@ run_docker() {
 stop_docker() {
 	cd scripts
 	echo "Stopping Docker..."
-	docker-compose -f ../../../ota-lith/ota-ce.yaml stop --detach
+	rm dockerIsRunning
+	docker-compose -f ../../../ota-lith/ota-ce.yaml stop
 	echo "Docker stopped."
 }
 
