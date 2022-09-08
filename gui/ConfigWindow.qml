@@ -369,7 +369,7 @@ WindowType{
                     }
                     background: Rectangle{
                         radius:10
-                        color: light2=="stop"? "red" : "green"
+                        color: lightDocker=="stop"? "red" : "green"
                     }
                 }
                 Text{
@@ -421,6 +421,12 @@ WindowType{
                         color: parent.hovered ? "gray" : (aString=="Dark" ? "#83898d" : "#83898d")
                         radius:mainw.width/192
                     }
+                    onClicked: {
+                        curProcess=6
+                        process6.start("scripts/docker.sh",["-r"])
+                        process9.start("scripts/isDockerRunning.sh",[""])
+                    }
+
 
 
 
