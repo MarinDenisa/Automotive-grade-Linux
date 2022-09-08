@@ -1,2 +1,0 @@
-# ota-gui
-TO DO
