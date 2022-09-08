@@ -11,7 +11,7 @@ run_docker() {
 stop_docker() {
 	cd scripts
 	echo "Stopping Docker..."
-	docker-compose -f ../../../ota-lith/ota-ce.yaml stop
+	docker-compose -f ../../../ota-lith/ota-ce.yaml stop --detach
 	echo "Docker stopped."
 }
 

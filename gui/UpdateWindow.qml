@@ -96,6 +96,7 @@ WindowType{
                 radius:mainw.width/192
             }
             onClicked:{
+                curProcess=6
                 process6.start("scripts/docker.sh",["-r"])
             }
         }
@@ -175,6 +176,7 @@ WindowType{
                 radius:mainw.width/192
             }
             onClicked:{
+                curProcess=7
                 process7.start("scripts/aktualizr.sh",[""])
             }
         }
@@ -355,6 +357,7 @@ WindowType{
                     radius:mainw.width/192
                 }
                 onClicked:{
+                    curProcess=1
                     dataModel.append({name: textMetrics.text, text:dateString})
                     process1.start("../createToml.sh",[dplusf])
                     console.log(dplusf)

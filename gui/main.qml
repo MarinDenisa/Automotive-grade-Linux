@@ -47,6 +47,7 @@ Window {
     property var dplusf: ""
     property var copydev: ""
     property var contor:0
+    property var curProcess: 0
 
 
     function basename(str)
@@ -230,13 +231,13 @@ Window {
 
 
     }
-    function stopDc(){
+ /*   function stopDc(){
         if(contor==10){
             mainw.close()
         }
-    }
+    }*/
 
-    Timer{
+    /*Timer{
         id:timi
         interval: 500
         running: false
@@ -245,7 +246,7 @@ Window {
             contor=contor+1
             stopDc()
         }
-    }
+    }*/
 
 
     Process {
@@ -414,8 +415,9 @@ Window {
 
 
                 onClicked: {
-                    process8.start("scripts/docker.sh",["-s"])
-                    timi.running=true
+                    //process8.start("scripts/docker.sh",["-s"])
+                    //timi.running=true
+                    mainw.close()
                 }
             }
 
@@ -1120,9 +1122,18 @@ Window {
                         bottomMargin: 10
                     }
                     onClicked:{
-                        process1.kill()
-                        process7.kill()
-                        txt.text += "\nProcess stopped."
+                        switch(curProcess){
+                        case 1:
+                            process1.kill()
+                            break
+                        case 6:
+                            process6.kill()
+                            break
+                        case 7:
+                            process7.kill()
+                            break
+                        }
+                        txt.text += "\nProcess "+curProcess+" stopped."
                     }
                 }
             }

@@ -1,0 +1,5 @@
+Thu 08 Sep 2022 01:00:34 AM PDT
+
+Aktualizr version 2020.10-35-g9d74b52d starting
+[31mAktualizr is currently running as non-root and may not work as expected! Aktualizr should be run as root for proper functionality.[0m
+Config directory config.toml does not exist.

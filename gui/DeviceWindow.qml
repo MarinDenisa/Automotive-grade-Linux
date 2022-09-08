@@ -74,6 +74,7 @@ WindowType{
                 anchors.centerIn: parent
             }
             onClicked:{
+                curProcess=1
                 process1.start("scripts/genDevice.sh",[" "])
             }
 

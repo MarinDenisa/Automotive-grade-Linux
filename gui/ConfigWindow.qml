@@ -76,6 +76,7 @@ WindowType{
             }
             onClicked: {
                 str="doi"
+                curProcess=1
                 process1.start("scripts/install_ota-lith.sh",["-i"])
             }
 
@@ -156,6 +157,7 @@ WindowType{
 
             onClicked: {
                 str="doi"
+                curProcess=1
                 process1.start("scripts/install_ota-lith.sh",["-o"])
             }
         }
@@ -234,6 +236,7 @@ WindowType{
 
                 onClicked: {
                     str="doi"
+                    curProcess=1
                     process1.start("scripts/install_akt_ota-cli.sh",["-a"])
                   //  timerbut.running=true
 
@@ -316,6 +319,7 @@ WindowType{
                     }
                     onClicked: {
                         str="doi"
+                        curProcess=1
                         process1.start("scripts/install_akt_ota-cli.sh",["-o"])
                     }
                 }
